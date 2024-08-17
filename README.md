@@ -5,10 +5,10 @@ Frontend del proyecto final Henry modalidad PartTime
 ## Team
 
 - Luis Diaz R.
-- Jhose
+- Jhose este lo eliminamos
 - Jesu Guzmán Gonzalez
 - Nydia Massiel Sánchez
-
+- Un integrate Que aun no llega
 
 ## Stack
 
@@ -23,6 +23,10 @@ Frontend del proyecto final Henry modalidad PartTime
 No comentaras que es sino que hace
 
 ## Git
+
+## Sobre los pull a la rama dev
+
+No nse sube nada que no este funcionando
 
 ### Manejo de ramas
 
