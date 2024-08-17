@@ -6,7 +6,7 @@ Frontend del proyecto final Henry modalidad PartTime
 
 -Luis Diaz
 
-- Nydia Sánchez
+- Nydia Massiel Sánchez
 
 ## Stack
 
@@ -19,7 +19,6 @@ Frontend del proyecto final Henry modalidad PartTime
 ## Sobre comentarios
 
 No comentaras que es sino que hace
-
 
 ## Git
 
