@@ -6,6 +6,8 @@ Frontend del proyecto final Henry modalidad PartTime
 
 -Luis Diaz
 
+- Nydia Sánchez
+
 ## Stack
 
 - React + Vite
@@ -16,7 +18,6 @@ Frontend del proyecto final Henry modalidad PartTime
 ## Sobre comentarios
 
 No comentaras que es sino que hace
-
 
 ## Git
 
@@ -42,15 +43,15 @@ No comentaras que es sino que hace
 - git branch
   - para ver todas las ramas y saber en cual estoy
 - git branch "nombre de la rama"
-  -	sin comillas, crea rama
+  - sin comillas, crea rama
 - git branch -M "newname"
   - renombra la rama en la que se esta actualmente
 - git branch -D "nombreDeLaRama"
   - para eliminar rama
 - git checkout "nombre de rama"
   - para desplazarse entre ramas
--	git checkout -
-	-	Te devuelve a la rama anterior activa
+- git checkout -
+  - Te devuelve a la rama anterior activa
 - git show-branch
   - muestra las ramas que hay y el ultimo commit de cada una
 - git show branch --all
@@ -60,7 +61,7 @@ No comentaras que es sino que hace
 
 ## GitHub Flow
 
-  ![alt text](GitFlow.png)
+![alt text](GitFlow.png)
 
 ## Sobre Vercel.json
 
