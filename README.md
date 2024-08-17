@@ -12,10 +12,12 @@ Frontend del proyecto final Henry modalidad PartTime
 - Redux Toolkit
   - integra redux-thunk y Dev Tool Extension
 - Bootstrap 5.3
+- Tailwind
 
 ## Sobre comentarios
 
 No comentaras que es sino que hace
+
 
 
 ## Git
@@ -69,6 +71,18 @@ Este archivo es para despliegue de una SPA que maneje react router Don en Vercel
 ## Sobre .prettierrc
 
 Este archivo es para que todos los colaboradores guarden con el mismo formato y evitar errores en los merge
+
+```js
+{
+    "useTabs": true, // uso de Tabs en vez de espacios
+    "tabWidth": 2,  // Tads de 2 espacios
+    "singleQuote": true, // transforma comillas dobles a sencillas en cadenas de texto
+    "semi": false,  // Omite el uso de punto y coma (;) al final de las sentencias.
+    "printWidth": 80, // Limita el ancho máximo de una línea de código a 80 caracteres.
+    "spaceBeforeFunctionParen": true, // Agrega un espacio antes del paréntesis de apertura en la declaración de funciones. Ejemplo: function example () {}.
+    "ignorePatterns": ["node_modules/", "build/"] // directorios ignorados
+  }
+```
 
 ## Sobre extensiones recomendadas para trabajar en equipo
 

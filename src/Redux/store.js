@@ -6,5 +6,7 @@ export default configureStore({
 	reducer:{
 		counter: counter,
 		// themeApp: themeApp
+
+		
 	}
 })

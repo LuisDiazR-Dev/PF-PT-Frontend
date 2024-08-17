@@ -4,7 +4,11 @@ import {
 	decrement,
 	reSet,
 } from './Redux/features/counter/Reducer-CounterSlice'
-import { incrementAsync } from './Redux/features/counter/Actions-Counter'
+import {
+	incrementAsync,
+	incrementPar,
+} from './Redux/features/counter/Actions-Counter'
+
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -33,6 +37,9 @@ function App() {
 					<button onClick={() => dispatch(reSet())}>Reset</button>
 					<button onClick={() => dispatch(incrementAsync(5))}>
 						Incrementar en 5 después de 1 segundo
+					</button>
+					<button onClick={() => dispatch(incrementPar(count))}>
+						aumentar si es par
 					</button>
 				</div>
 				<p>

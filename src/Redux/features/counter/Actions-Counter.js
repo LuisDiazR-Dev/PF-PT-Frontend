@@ -12,3 +12,14 @@ export const incrementAsync = (amount) => (dispatch) => {
     dispatch(incrementByAmount(amount));
   }, 1000);
 };
+
+// si el counter es par enonces ejecutamos incrementar +1
+
+export const incrementPar = (count)=>{
+
+// logica para saber is es par
+  if (par) {
+    increment()
+  }
+
+}
