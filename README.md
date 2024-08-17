@@ -4,9 +4,10 @@ Frontend del proyecto final Henry modalidad PartTime
 
 ## Team
 
--Luis Diaz
-
+- Luis Diaz
+- Jesu Guzmán
 - Nydia Massiel Sánchez
+
 
 ## Stack
 
