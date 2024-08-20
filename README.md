@@ -4,7 +4,7 @@ Frontend del proyecto final Henry modalidad PartTime
 
 ## Team
 
-- Luis Diaz R.
+- Luis Diaz Restrepo
 - Jesu Guzmán
 - Nydia Massiel Sánchez
 - Damian Moreira
@@ -26,7 +26,7 @@ No comentaras que es sino que hace
 
 ## Sobre los pull a la rama dev
 
-No se sube nada a develop que no este funcionando
+No se sube al repositorio nada que no este funcionando
 
 ### Manejo de ramas
 
@@ -42,10 +42,10 @@ No se sube nada a develop que no este funcionando
   - Obtener las actualizaciones del repositorio remoto
 - git branch -r
   - Listar todas las ramas remotas
-- git checkout -b development origin/development
+- git checkout -b develop origin/develop
   - y quedas parado en development. luego crear tu rama de trabajo
 
-3. Creando ramas
+1. Creando ramas
 
 - git branch
   - para ver todas las ramas y saber en cual estoy
