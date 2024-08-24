@@ -1,8 +1,14 @@
+import SectionCta from '../components/Landing/sectionCta'
+import SectionPricing from '../components/Landing/sectionPricing'
+import SectionReview from '../components/Landing/sectionReview'
+
 const Landing = () => {
 	return (
-		<div>
-			<h2>landing page</h2>
-		</div>
+		<>
+			<SectionCta></SectionCta>
+			<SectionReview></SectionReview>
+			<SectionPricing></SectionPricing>
+		</>
 	)
 }
 
