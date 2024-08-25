@@ -1,9 +1,12 @@
-import Sidebar from "../components/dashboard_admin/Sidebar"
+import Sidebar from '../components/dashboard_admin/Sidebar'
 
-export const Dashboard_admin = () => {
-  return (
-    <div>Dashboard_admin
-      <Sidebar/>
-    </div>
-  )
+const DashboardAdmin = () => {
+	return (
+		<div>
+			<h1>Dashboard_admin</h1>
+			<Sidebar />
+		</div>
+	)
 }
+
+export default DashboardAdmin

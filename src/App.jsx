@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import NavBar from './components/Navbar/Navbar'
 import Landing from './pages/Landing'
+import DashboardAdmin from './pages/Dashboard_admin'
 
 function App() {
 	// if (isLoading) return <div>Loading...</div>
@@ -12,6 +13,7 @@ function App() {
 
 			<Routes>
 				<Route path="/" element={<Landing />} />
+				<Route path="/dashboard-admin" element={<DashboardAdmin />} />
 			</Routes>
 		</div>
 	)
