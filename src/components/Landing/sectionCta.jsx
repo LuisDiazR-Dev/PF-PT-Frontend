@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const SectionCta = () => {
 	return (
 		<section className="bg-white dark:bg-gray-900">
@@ -14,9 +16,9 @@ const SectionCta = () => {
 						impulsando así la organización y el bienestar comunitario.
 					</p>
 					<div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
-						<a
-							href="#"
-							className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+						<Link
+							to="/dashboard-admin"
+							className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 "
 						>
 							Empiezas a Administrar
 							<svg
@@ -28,13 +30,14 @@ const SectionCta = () => {
 							>
 								<path
 									stroke="currentColor"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth="2"
 									d="M1 5h12m0 0L9 1m4 4L9 9"
 								/>
 							</svg>
-						</a>
+						</Link>
+
 						<a
 							href="#"
 							className="py-3 px-5 sm:ms-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
@@ -48,7 +51,7 @@ const SectionCta = () => {
 						className="mx-auto w-full lg:max-w-xl h-64 rounded-lg sm:h-96 shadow-xl"
 						src="https://www.youtube.com/embed/KaLxCiilHns"
 						title="YouTube video player"
-						frameborder="0"
+						frameBorder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen
 					></iframe>
