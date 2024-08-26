@@ -1,12 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
-import counter from "./features/counter/Reducer-CounterSlice";
-import theme from "./features/setTheme/Reducer-themeSlice";
-import condominiumsReducer from './features/getCondominium/condominiumSlice';
+import { configureStore } from '@reduxjs/toolkit'
+import counter from './features/counter/Reducer-CounterSlice'
+import theme from './features/setTheme/Reducer-themeSlice'
+import condominiumsReducer from './features/getCondominium/condominiumSlice'
+import apartmentSlice from './features/getApartments/apartmentsSlice'
 
 export default configureStore({
-	reducer:{
+	reducer: {
 		counter: counter,
-		theme: theme,		
+		theme: theme,
 		condominiums: condominiumsReducer,
-	}
+		apartments: apartmentSlice,
+	},
 })
