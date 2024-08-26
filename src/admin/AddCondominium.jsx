@@ -1,6 +1,6 @@
 import Sidebar from '../components/dashboard_admin/Sidebar'
 
-export const Condominium = () => {
+export const AddCondominium = () => {
 	return (
 		<div>
 			<Sidebar />
@@ -9,7 +9,7 @@ export const Condominium = () => {
 				style={{ marginLeft: '18rem' }} // Adjust this value to match your sidebar width
 			>
 				<div className="border-solid border-4 border-black p-4 h-[900px] w-[1500px]">
-					Condominio
+					Add Condominio
 				</div>
 			</div>
 		</div>
