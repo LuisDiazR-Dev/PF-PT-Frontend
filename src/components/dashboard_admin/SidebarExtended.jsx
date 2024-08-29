@@ -1,13 +1,20 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import SelectCondominium from './SelectCondominium'
 import SidebarFooter from './SidebarFooter'
 
 const SidebarExtended = ({ onOptionChange }) => {
 	const [activeOptionStyle, setActiveOptionStyle] = useState('Apartamentos')
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
 	const handleOptionClick = (option) => {
 		setActiveOptionStyle(option)
 		onOptionChange(option)
+		if (option === 'Apartamentos') {
+			setIsDropdownOpen(!isDropdownOpen)
+		} else {
+			setIsDropdownOpen(false)
+		}
 	}
 
 	const getOptionClasses = (option) => {
@@ -30,7 +37,7 @@ const SidebarExtended = ({ onOptionChange }) => {
 						<SelectCondominium></SelectCondominium>
 					</li>
 				</ul>
-				<ul className="space-y-2 font-medium">
+				<ul id="dropdown-example" className="space-y-2 font-medium">
 					<li>
 						<button
 							type="button"
@@ -69,26 +76,30 @@ const SidebarExtended = ({ onOptionChange }) => {
 								/>
 							</svg>
 						</button>
-						<ul id="dropdown-example" className="hidden py-2 space-y-2">
-							<li>
-								<a
-									href="#"
-									onClick={() => handleOptionClick('Apartamentos')}
-									className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-								>
-									Todos
-								</a>
-							</li>
-							<li>
-								<a
-									href="#"
-									className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-								>
-									Crear
-								</a>
-							</li>
-						</ul>
+						{isDropdownOpen && (
+							<ul className="py-2 space-y-2">
+								<li>
+									<a
+										href="#"
+										onClick={() => handleOptionClick('Todos')}
+										className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+									>
+										Todos
+									</a>
+								</li>
+								<li>
+									<a
+										href="#"
+										onClick={() => handleOptionClick('Crear')}
+										className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+									>
+										Crear
+									</a>
+								</li>
+							</ul>
+						)}
 					</li>
+
 					<li>
 						<a
 							href="#"
@@ -161,6 +172,9 @@ const SidebarExtended = ({ onOptionChange }) => {
 			</div>
 		</aside>
 	)
+}
+SidebarExtended.propTypes = {
+	onOptionChange: PropTypes.func.isRequired,
 }
 
 export default SidebarExtended

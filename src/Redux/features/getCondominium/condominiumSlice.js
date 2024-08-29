@@ -1,14 +1,11 @@
-// src/features/condominiums/condominiumSlice.js
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-// Acción asíncrona para obtener los datos usando axios
 export const fetchCondominiums = createAsyncThunk(
 	'condominiums/fetchCondominiums',
 	async () => {
 		const response = await axios.get('http://localhost:3001/api/condominiums')
-		return response.data // axios ya parsea la respuesta como JSON
+		return response.data
 	}
 )
 

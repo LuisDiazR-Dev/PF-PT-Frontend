@@ -53,8 +53,7 @@ const DashboardAdmin = () => {
 									></path>
 								</svg>
 							</button>
-
-							{/*--------------- logo -----------*/}
+							--------------- logo -----------
 							<LogoNavbar></LogoNavbar>
 						</div>
 

@@ -1,30 +1,31 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-	fetchCondominiums,
-	setSelectedCondominium,
-} from '../../Redux/features/getCondominium/condominiumSlice'
+	fetchAdmins,
+	setSelectedAdmin,
+} from '../../Redux/features/tenants/getAdminsUsersSlice'
 
-const SelectCondominium = () => {
+const SelectedAdminUser = () => {
 	const dispatch = useDispatch()
-	const condominiums = useSelector((state) => state.condominiums.condominiums)
-	const status = useSelector((state) => state.condominiums.status)
+	const admins = useSelector((state) => state.admin.admins)
+	const status = useSelector((state) => state.admin.status)
 
 	useEffect(() => {
 		if (status === 'idle') {
-			dispatch(fetchCondominiums())
+			dispatch(fetchAdmins())
 		}
 	}, [status, dispatch])
 
 	const handleChange = (e) => {
 		e.preventDefault()
-		dispatch(setSelectedCondominium(e.target.value))
+
+		dispatch(setSelectedAdmin(e.target.value))
 	}
 
 	return (
 		<form className="max-w-sm mx-auto">
 			<label htmlFor="underline_select" className="sr-only">
-				Seleccione condominio
+				Selecciona Administradores
 			</label>
 			<select
 				id="underline_select"
@@ -32,11 +33,11 @@ const SelectCondominium = () => {
 				onChange={handleChange}
 			>
 				<option value="" disabled>
-					Seleccione un condominio
+					Administradores
 				</option>
-				{condominiums.map((condominium) => (
-					<option key={condominium.id} value={condominium.id}>
-						{condominium.condominium_name}
+				{admins.map((admin) => (
+					<option key={admin.id} value={admin.id}>
+						{admin.username}
 					</option>
 				))}
 			</select>
@@ -44,4 +45,4 @@ const SelectCondominium = () => {
 	)
 }
 
-export default SelectCondominium
+export default SelectedAdminUser

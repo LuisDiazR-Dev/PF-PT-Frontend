@@ -38,22 +38,21 @@ const SectionCta = () => {
 							</svg>
 						</Link>
 
-						<a
-							href="#"
+						<Link
+							to="/dashboard-tenant"
 							className="py-3 px-5 sm:ms-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
 						>
-							Ver precios
-						</a>
+							Intranet
+						</Link>
 					</div>
 				</div>
 				<div>
 					<iframe
-						className="mx-auto w-full lg:max-w-xl h-64 rounded-lg sm:h-96 shadow-xl"
+						className="mx-auto w-full lg:max-w-xl h-64 rounded-lg sm:h-96 shadow-xl border-none"
 						src="https://www.youtube.com/embed/KaLxCiilHns"
 						title="YouTube video player"
-						frameBorder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen
+						allowFullScreen
 					></iframe>
 				</div>
 			</div>
