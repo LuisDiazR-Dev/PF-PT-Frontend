@@ -6,10 +6,11 @@ import UserMenu from '../components/dashboard_admin/AdminProfileMenu'
 import LogoNavbar from '../components/Navbar/LogoNavbar'
 
 const DashboardAdmin = () => {
-	const [activeSection, setActiveSection] = useState('') // Estado para la opción activa
+	const [activeSection, setActiveSection] = useState('')
+	const [showCreateForm, setShowCreateForm] = useState(false)
 
 	const componentMap = {
-		Apartamentos: ApartmentsView,
+		Apartamentos: () => <ApartmentsView showCreateForm={showCreateForm} />,
 		Servicios: ServicesTab,
 		Notificaciones: () => (
 			<div className="p-20 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
@@ -24,6 +25,15 @@ const DashboardAdmin = () => {
 	}
 
 	const ActiveComponent = componentMap[activeSection] || ApartmentsView
+
+	const handleOptionChange = (option) => {
+		setActiveSection(option)
+		if (option === 'Crear') {
+			setShowCreateForm(true)
+		} else {
+			setShowCreateForm(false)
+		}
+	}
 
 	return (
 		<div className="dashboard-admin">
@@ -64,11 +74,11 @@ const DashboardAdmin = () => {
 			</nav>
 
 			{/* Sidebar con función de cambio de opción */}
-			<SidebarExtended onOptionChange={setActiveSection} />
+			<SidebarExtended onOptionChange={handleOptionChange} />
 
 			{/* ------------------ render-section -------------- */}
 			<div className="render-section p-2 sm:ml-64">
-				<ActiveComponent />
+				<ActiveComponent showCreateForm={showCreateForm} />
 			</div>
 		</div>
 	)
