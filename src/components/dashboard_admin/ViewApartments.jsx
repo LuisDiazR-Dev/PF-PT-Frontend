@@ -3,13 +3,14 @@ import SearchBar from './SearchBar'
 import Cards from './cards'
 import CreateApartmentForm from './CreateApartmentForm'
 
-const ApartmentsView = ({ showCreateForm }) => {
+// const ApartmentsView = ({ showCreateForm }) => {
+const ApartmentsView = () => {
 	return (
-		<section>
-			<div className="p-2 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-				<SearchBar />
-				{showCreateForm ? <CreateApartmentForm /> : <Cards />}
-			</div>
+		<section className="p-2 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+			<SearchBar />
+			<span>Cargando lista</span>
+			<Cards />
+			{/* {showCreateForm ? <CreateApartmentForm /> : <Cards />} */}
 		</section>
 	)
 }
