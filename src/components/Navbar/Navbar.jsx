@@ -1,26 +1,7 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { toggleTheme } from '../../Redux/features/setTheme/Reducer-themeSlice'
+import ButtonSetTheme from '../SetTheme/ButtonSetTheme'
 import LogoNavbar from './LogoNavbar'
 
 const NavBar = () => {
-	const dispatch = useDispatch()
-
-	// Cambiar la clase en el <html> o <body>
-	const theme = useSelector((state) => state.theme.theme)
-
-	useEffect(() => {
-		if (theme === 'dark') {
-			document.documentElement.classList.add('dark')
-		} else {
-			document.documentElement.classList.remove('dark')
-		}
-	}, [theme])
-
-	const changeTheme = () => {
-		dispatch(toggleTheme())
-	}
-
 	return (
 		<nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
 			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -136,13 +117,7 @@ const NavBar = () => {
 									</li>
 
 									<li>
-										<a
-											role="button"
-											className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-											onClick={changeTheme}
-										>
-											{theme === 'light' ? 'Light Mode' : 'Dark Mode'}
-										</a>
+										<ButtonSetTheme />
 									</li>
 								</ul>
 								<div className="py-1">
@@ -150,7 +125,7 @@ const NavBar = () => {
 										href="#"
 										className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
 									>
-										Salir
+										-
 									</a>
 								</div>
 							</div>

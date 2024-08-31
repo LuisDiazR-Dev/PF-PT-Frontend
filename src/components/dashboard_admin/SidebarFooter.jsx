@@ -1,5 +1,3 @@
-// import React from 'react'
-
 const SidebarFooter = () => {
 	return (
 		<>
@@ -33,7 +31,6 @@ const SidebarFooter = () => {
 					</button>
 				</li>
 
-				{/*  */}
 				<li>
 					<a
 						href="/"

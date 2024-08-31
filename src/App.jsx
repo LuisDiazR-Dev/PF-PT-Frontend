@@ -1,4 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+
 import './App.css'
 import NavBar from './components/Navbar/Navbar'
 import Landing from './pages/Landing'
@@ -6,6 +9,17 @@ import DashboardAdmin from './pages/Dashboard_admin'
 import DashboardTenant from './pages/DashBorad_tenant'
 
 function App() {
+	const theme = useSelector((state) => state.theme.theme)
+
+	// Aplicar la clase del tema al cargar la aplicación
+	useEffect(() => {
+		if (theme === 'dark') {
+			document.documentElement.classList.add('dark')
+		} else {
+			document.documentElement.classList.remove('dark')
+		}
+	}, [theme])
+
 	const location = useLocation()
 
 	// Rutas en las que la NavBar se oculta
