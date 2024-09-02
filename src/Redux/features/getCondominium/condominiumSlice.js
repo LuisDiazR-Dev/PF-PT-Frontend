@@ -5,6 +5,7 @@ export const fetchCondominiums = createAsyncThunk(
 	'condominiums/fetchCondominiums',
 	async () => {
 		const response = await axios.get('http://localhost:3001/api/condominiums')
+		console.log(response.data)
 		return response.data
 	}
 )

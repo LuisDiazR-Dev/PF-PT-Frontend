@@ -7,10 +7,10 @@ import LogoNavbar from '../components/Navbar/LogoNavbar'
 
 const DashboardAdmin = () => {
 	const [activeSection, setActiveSection] = useState('')
-	const [showCreateForm, setShowCreateForm] = useState(false)
+	// const [showCreateForm, setShowCreateForm] = useState(false)
 
 	const componentMap = {
-		Apartamentos: () => <ApartmentsView showCreateForm={showCreateForm} />,
+		Apartamentos: ApartmentsView,
 		Servicios: ServicesTab,
 		Notificaciones: () => (
 			<div className="p-20 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
@@ -18,7 +18,7 @@ const DashboardAdmin = () => {
 			</div>
 		),
 		Estadísticas: () => (
-			<div className="p-20 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+			<div className="p-80 border-2  border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
 				Estadísticas - Próximamente
 			</div>
 		),
@@ -28,11 +28,6 @@ const DashboardAdmin = () => {
 
 	const handleOptionChange = (option) => {
 		setActiveSection(option)
-		if (option === 'Crear') {
-			setShowCreateForm(true)
-		} else {
-			setShowCreateForm(false)
-		}
 	}
 
 	return (
@@ -78,7 +73,7 @@ const DashboardAdmin = () => {
 
 			{/* ------------------ render-section -------------- */}
 			<div className="render-section p-2 sm:ml-64">
-				<ActiveComponent showCreateForm={showCreateForm} />
+				<ActiveComponent />
 			</div>
 		</div>
 	)

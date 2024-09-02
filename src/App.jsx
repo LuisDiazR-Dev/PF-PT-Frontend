@@ -7,6 +7,7 @@ import NavBar from './components/Navbar/Navbar'
 import Landing from './pages/Landing'
 import DashboardAdmin from './pages/Dashboard_admin'
 import DashboardTenant from './pages/DashBorad_tenant'
+// import ViewApartmentDetail from './components/dashboard_admin/ViewApartmentDetail'
 
 function App() {
 	const theme = useSelector((state) => state.theme.theme)
@@ -34,6 +35,10 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Landing />} />
 				<Route path="/dashboard-admin" element={<DashboardAdmin />} />
+				{/* <Route
+					path="/dashboard-admin/:condominio/detail/:id"
+					element={<ViewApartmentDetail />}
+				/> */}
 				<Route path="/dashboard-tenant" element={<DashboardTenant />} />
 			</Routes>
 		</div>

@@ -1,22 +1,25 @@
-import PropTypes from 'prop-types'
+import { useState } from 'react'
 import SearchBar from './SearchBar'
-import Cards from './cards'
-import CreateApartmentForm from './CreateApartmentForm'
+import Cards from './Cards'
+import ViewApartmentsDetail from './ViewApartmentDetail'
 
-// const ApartmentsView = ({ showCreateForm }) => {
-const ApartmentsView = () => {
+const ViewApartments = () => {
+	const [selectedApartment, setSelectedApartment] = useState(null)
+
+	const handleCardClick = (apartment) => {
+		setSelectedApartment(apartment)
+	}
+
 	return (
 		<section className="p-2 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
 			<SearchBar />
-			<span>Cargando lista</span>
-			<Cards />
-			{/* {showCreateForm ? <CreateApartmentForm /> : <Cards />} */}
+			{selectedApartment ? (
+				<ViewApartmentsDetail apartment={selectedApartment} />
+			) : (
+				<Cards onCardClick={handleCardClick} />
+			)}
 		</section>
 	)
 }
 
-ApartmentsView.propTypes = {
-	showCreateForm: PropTypes.bool.isRequired,
-}
-
-export default ApartmentsView
+export default ViewApartments

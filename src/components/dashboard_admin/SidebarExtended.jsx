@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import SelectCondominium from './SelectCondominium'
 import SidebarFooter from './SidebarFooter'
+import AptoIcon from './incons/AptoIcon'
+import DropDownArrow from './incons/DropDownArrow'
 
 const SidebarExtended = ({ onOptionChange }) => {
 	const [activeOptionStyle, setActiveOptionStyle] = useState('Apartamentos')
@@ -9,9 +11,14 @@ const SidebarExtended = ({ onOptionChange }) => {
 
 	const handleOptionClick = (option) => {
 		setActiveOptionStyle(option)
+
 		onOptionChange(option)
 		if (option === 'Apartamentos') {
 			setIsDropdownOpen(!isDropdownOpen)
+		} else if (option === 'allApto') {
+			setIsDropdownOpen(isDropdownOpen)
+		} else if (option === 'createApto') {
+			setIsDropdownOpen(isDropdownOpen)
 		} else {
 			setIsDropdownOpen(false)
 		}
@@ -48,50 +55,33 @@ const SidebarExtended = ({ onOptionChange }) => {
 							aria-controls="dropdown-example"
 							data-collapse-toggle="dropdown-example"
 						>
-							<svg
-								className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-								aria-hidden="true"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="currentColor"
-								viewBox="0 0 20 18"
-							>
-								<path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-							</svg>
+							<AptoIcon />
 							<span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
 								Apartamentos
 							</span>
-							<svg
-								className="w-3 h-3"
-								aria-hidden="true"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 10 6"
-							>
-								<path
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									d="m1 1 4 4 4-4"
-								/>
-							</svg>
+							<DropDownArrow />
 						</button>
+
 						{isDropdownOpen && (
 							<ul className="py-2 space-y-2">
 								<li>
 									<a
-										href="#"
-										onClick={() => handleOptionClick('Todos')}
-										className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+										// href="/"
+										onClick={() => handleOptionClick('allApto')}
+										className={`
+											${getOptionClasses('allApto')} 
+										flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
 									>
 										Todos
 									</a>
 								</li>
 								<li>
 									<a
-										href="#"
-										onClick={() => handleOptionClick('Crear')}
-										className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+										// href="/"
+										onClick={() => handleOptionClick('createApto')}
+										className={`
+											${getOptionClasses('createApto')} 
+										flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
 									>
 										Crear
 									</a>
