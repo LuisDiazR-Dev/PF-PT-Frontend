@@ -1,48 +1,42 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+"use client";
+import "./App.css";
 
-import './App.css'
-import NavBar from './components/Navbar/Navbar'
-import Landing from './pages/Landing'
-import DashboardAdmin from './pages/Dashboard_admin'
-import DashboardTenant from './pages/DashBorad_tenant'
-// import ViewApartmentDetail from './components/dashboard_admin/ViewApartmentDetail'
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+
+import NavBar from "./components/Navbar/Navbar";
+import Landing from "./pages/Landing";
+import Footerx from "./components/Landing/Footerx";
+import LoginForm from "./pages/LoginForm";
 
 function App() {
-	const theme = useSelector((state) => state.theme.theme)
+  // set Theme
+  const theme = useSelector((state) => state.theme.theme);
 
-	// Aplicar la clase del tema al cargar la aplicación
-	useEffect(() => {
-		if (theme === 'dark') {
-			document.documentElement.classList.add('dark')
-		} else {
-			document.documentElement.classList.remove('dark')
-		}
-	}, [theme])
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
-	const location = useLocation()
+  const location = useLocation();
+  const hiddenNavBarRoutes = ["/dashboard-admin"];
 
-	// Rutas en las que la NavBar se oculta
-	const hiddenNavBarRoutes = ['/dashboard-admin']
+  return (
+    <div className="container mx-auto">
+      {/* Solo renderiza la NavBar si la ruta actual no está en hiddenNavBarRoutes */}
+      {!hiddenNavBarRoutes.includes(location.pathname) && <NavBar />}
 
-	return (
-		// <div className="container mx-auto">
-		<div className="">
-			{/* Solo renderiza la NavBar si la ruta actual no está en hiddenNavBarRoutes */}
-			{!hiddenNavBarRoutes.includes(location.pathname) && <NavBar />}
-
-			<Routes>
-				<Route path="/" element={<Landing />} />
-				<Route path="/dashboard-admin" element={<DashboardAdmin />} />
-				{/* <Route
-					path="/dashboard-admin/:condominio/detail/:id"
-					element={<ViewApartmentDetail />}
-				/> */}
-				<Route path="/dashboard-tenant" element={<DashboardTenant />} />
-			</Routes>
-		</div>
-	)
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<LoginForm />} />
+      </Routes>
+      <Footerx />
+    </div>
+  );
 }
 
-export default App
+export default App;
