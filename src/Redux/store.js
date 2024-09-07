@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import counter from './features/counter/Reducer-CounterSlice'
 import theme from './features/setTheme/Reducer-themeSlice'
 import adminRegisterSlice from './features/register/createAdminSlice'
+import loginAdminSlice from './features/register/loginAdminSlice'
 
 
 
@@ -15,9 +16,10 @@ export default configureStore({
 	reducer: {
 		counter: counter,
 		theme: theme,
-
+		
 		createAdmin: adminRegisterSlice,
-
+		loginAdmin: loginAdminSlice,
+		
 
 
 		condominiums: condominiumsReducer,
