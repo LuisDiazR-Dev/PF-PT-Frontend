@@ -3,7 +3,8 @@ import counter from './features/counter/Reducer-CounterSlice'
 import theme from './features/setTheme/Reducer-themeSlice'
 import adminRegisterSlice from './features/register/createAdminSlice'
 import loginAdminSlice from './features/register/loginAdminSlice'
-
+import createCondominiumSlice from './features/getCondominium/createCondominiumSlice'
+import updateCondominiumSlice from './features/getCondominium/updateCondominiumSlice'
 
 
 
@@ -19,6 +20,8 @@ export default configureStore({
 		
 		createAdmin: adminRegisterSlice,
 		loginAdmin: loginAdminSlice,
+		createCondominium: createCondominiumSlice,
+		updateCondominium: updateCondominiumSlice,
 		
 
 

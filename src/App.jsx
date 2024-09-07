@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="">
-      {/* Solo renderiza la NavBar si la ruta actual no está en hiddenNavBarRoutes */}
+      {/* Solo rendering la NavBar si la ruta actual no está en hiddenNavBarRoutes */}
       {!hiddenNavBarRoutes.includes(location.pathname) && <NavBar />}
 
       <Routes>

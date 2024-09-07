@@ -1,17 +1,8 @@
 //
 "use client";
-// import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import LogoNavbar from "../components/Navbar/LogoNavbar";
-import ButtonSetTheme from "../components/SetTheme/ButtonSetTheme";
-import SearchBar from "../components/DashboardAdmin/SearchBar";
-// import ViewApartments from "../components/DashboardAdmin/ViewApartments";
-import AdminProfileMenu from "../components/DashboardAdmin/AdminProfileMenu";
-
 import { Sidebar } from "flowbite-react";
 import {
-  HiViewBoards,
+  // HiViewBoards,
   // HiArrowSmRight,
   HiArrowSmLeft,
   HiChartPie,
@@ -21,7 +12,28 @@ import {
   // HiUser,
 } from "react-icons/hi";
 
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+// import { Routes, Route } from "react-router-dom";
+
+import LogoNavbar from "../components/Navbar/LogoNavbar";
+import ButtonSetTheme from "../components/SetTheme/ButtonSetTheme";
+import SearchBar from "../components/DashboardAdmin/SearchBar";
+import ViewApartments from "../components/DashboardAdmin/ViewApartments";
+import ViewCondominiums from "../components/DashboardAdmin/ViewCodominiums";
+import AdminProfileMenu from "../components/DashboardAdmin/AdminProfileMenu";
+import CreateCondominium from "../components/DashboardAdmin/CreateCondominium";
+import DetailCondominium from "../components/DashboardAdmin/DetailCondominium";
+
 const DashboardAdmin = () => {
+  const [username, setUsername] = useState("");
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []);
+
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("username");
@@ -34,6 +46,39 @@ const DashboardAdmin = () => {
     navigate("/");
   };
 
+  const [activeOption, setActiveOption] = useState("Inicial");
+  const handleItemClick = (item) => {
+    setActiveOption(item);
+  };
+
+  // renderizado según opción activa
+  const componentMap = {
+    Inicial: () => (
+      <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
+        Seleccione un condominio
+      </div>
+    ),
+
+    ViewCondominiums: ViewCondominiums,
+    DetailCondominium: DetailCondominium,
+    CreateCondominium: CreateCondominium,
+
+    ViewApartments: ViewApartments,
+
+    Notificaciones: () => (
+      <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        Notificaciones - Próximamente
+      </div>
+    ),
+    Estadísticas: () => (
+      <div className="p-80 border-2  border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        Estadísticas - Próximamente
+      </div>
+    ),
+  };
+  const ActiveComponent = componentMap[activeOption];
+  const hiddenSearchBar = ["CreateCondominium", "DetailCondominium"];
+
   return (
     <div className="">
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -42,6 +87,7 @@ const DashboardAdmin = () => {
             {/*  */}
             <div className="flex items-center justify-start rtl:justify-end">
               {/* Menu hamburguesa */}
+
               <button
                 data-drawer-target="logo-sidebar"
                 data-drawer-toggle="logo-sidebar"
@@ -50,6 +96,7 @@ const DashboardAdmin = () => {
                 className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               >
                 <span className="sr-only">Open sidebar</span>
+
                 <svg
                   className="w-6 h-6"
                   aria-hidden="true"
@@ -85,10 +132,39 @@ const DashboardAdmin = () => {
         <Sidebar aria-label="Sidebar with multi-level dropdown example">
           <Sidebar.Items>
             <Sidebar.ItemGroup>
+              <Sidebar.Item href="#" icon={HiInbox}>
+                Hola, {username}
+              </Sidebar.Item>
               <Sidebar.Collapse icon={HiShoppingBag} label="Condominios">
-                <Sidebar.Item href="#">Seleccionar</Sidebar.Item>
-                <Sidebar.Item href="#">Crear</Sidebar.Item>
+                <Sidebar.Item
+                  href="#"
+                  className={
+                    activeOption === "ViewCondominiums" ? "bg-gray-200" : ""
+                  }
+                  onClick={() => handleItemClick("ViewCondominiums")}
+                >
+                  Seleccionar
+                </Sidebar.Item>
+                <Sidebar.Item
+                  href="#"
+                  className={
+                    activeOption === "CreateCondominium" ? "bg-gray-200" : ""
+                  }
+                  onClick={() => handleItemClick("CreateCondominium")}
+                >
+                  Crear +
+                </Sidebar.Item>{" "}
+                <Sidebar.Item
+                  href="#"
+                  className={
+                    activeOption === "DeletedCondominium" ? "bg-gray-200" : ""
+                  }
+                  onClick={() => handleItemClick("DeletedCondominium")}
+                >
+                  Borrados
+                </Sidebar.Item>
               </Sidebar.Collapse>
+
               <Sidebar.Collapse icon={HiTable} label="Apartamentos">
                 <Sidebar.Item href="#">Todos</Sidebar.Item>
                 <Sidebar.Item href="#">Crear</Sidebar.Item>
@@ -102,7 +178,7 @@ const DashboardAdmin = () => {
                 Estadísticas
               </Sidebar.Item>
             </Sidebar.ItemGroup>
-            {/*  */}
+
             <Sidebar.ItemGroup>
               <Sidebar.Item
                 href="#"
@@ -110,11 +186,11 @@ const DashboardAdmin = () => {
                 label="Pro"
                 labelColor="dark"
               >
-                Upgrade to Pro
+                Hazte to Pro
               </Sidebar.Item>
-              <Sidebar.Item href="#" icon={HiViewBoards}>
+              {/* <Sidebar.Item href="#" icon={HiViewBoards}>
                 Documentation
-              </Sidebar.Item>
+              </Sidebar.Item> */}
               <Sidebar.Item
                 href="#"
                 icon={HiArrowSmLeft}
@@ -131,9 +207,9 @@ const DashboardAdmin = () => {
 
       <div className="p-4 sm:ml-64">
         <section className="p-2 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-          <SearchBar />
+          {!hiddenSearchBar.includes(activeOption) && <SearchBar />}
 
-          <div>componente renderizado</div>
+          <ActiveComponent handleItemClick={handleItemClick} />
         </section>
       </div>
     </div>
