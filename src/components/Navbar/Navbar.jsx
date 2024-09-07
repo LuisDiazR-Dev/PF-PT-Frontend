@@ -14,11 +14,13 @@ const NavBar = () => {
         {/* Empieza */}
         <Dropdown label="Empieza" dismissOnClick={false}>
           <Dropdown.Item>
-            <Link to="login">Inicia Sesión</Link>
+            <Link to="/login">Inicia Sesión</Link>
             {/* Inicia Sesión */}
           </Dropdown.Item>
 
-          <Dropdown.Item>Regístrate</Dropdown.Item>
+          <Dropdown.Item>
+            <Link to="/register">Regístrate</Link>
+          </Dropdown.Item>
         </Dropdown>
         {/* ----end */}
 
