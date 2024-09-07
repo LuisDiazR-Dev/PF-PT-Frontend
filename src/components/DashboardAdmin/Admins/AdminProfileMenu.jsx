@@ -1,4 +1,6 @@
-const UserMenu = ({ handleLogout }) => {
+import PropTypes from "prop-types";
+
+const UserProfile = ({ handleLogout }) => {
   return (
     <div className="flex items-center">
       <div className="flex items-center ms-3">
@@ -76,4 +78,8 @@ const UserMenu = ({ handleLogout }) => {
   );
 };
 
-export default UserMenu;
+UserProfile.propTypes = {
+  handleLogout: PropTypes.func.isRequired,
+};
+
+export default UserProfile;
