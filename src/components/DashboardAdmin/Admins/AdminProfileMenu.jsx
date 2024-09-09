@@ -1,20 +1,48 @@
-import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const UserProfile = ({ handleLogout }) => {
+const UserProfile = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    const storedImageUrl = localStorage.getItem("imageUrl");
+
+    if (storedUsername) setUsername(storedUsername);
+    if (storedImageUrl) setImageUrl(storedImageUrl);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("email");
+    localStorage.removeItem("imageUrl");
+    localStorage.removeItem("isActive");
+    localStorage.removeItem("SuscriptionId");
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    navigate("/");
+  };
   return (
     <div className="flex items-center">
       <div className="flex items-center ms-3">
         <div>
           <button
+            data-dropdown-target="dropdown-user"
+            data-dropdown-toggle="dropdown-user"
+            aria-controls="dropdown-user"
             type="button"
             className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-            aria-expanded="false"
-            data-dropdown-toggle="dropdown-user"
           >
             <span className="sr-only">Open user menu</span>
             <img
               className="w-8 h-8 rounded-full"
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              src={
+                imageUrl ||
+                "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              }
               alt="user photo"
             />
           </button>
@@ -25,18 +53,18 @@ const UserProfile = ({ handleLogout }) => {
         >
           <div className="px-4 py-3" role="none">
             <p className="text-sm text-gray-900 dark:text-white" role="none">
-              Hola, Administrador
+              Hola, {username}
             </p>
           </div>
           <ul className="py-1" role="none">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/profile"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                 role="menuitem"
               >
-                Perfil
-              </a>
+                Mi Perfil
+              </Link>
             </li>
             <li>
               <a
@@ -49,7 +77,7 @@ const UserProfile = ({ handleLogout }) => {
             </li>
             <li>
               <a
-                href="#"
+                href="/"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 onClick={handleLogout}
               >
@@ -76,10 +104,6 @@ const UserProfile = ({ handleLogout }) => {
       </div>
     </div>
   );
-};
-
-UserProfile.propTypes = {
-  handleLogout: PropTypes.func.isRequired,
 };
 
 export default UserProfile;

@@ -7,8 +7,7 @@ import {
   HiShoppingBag,
   HiTable,
 } from "react-icons/hi";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import LogoNavbar from "../components/Navbar/LogoNavbar";
 import ButtonSetTheme from "../components/SetTheme/ButtonSetTheme";
@@ -20,26 +19,7 @@ import CreateCondominium from "../components/DashboardAdmin/Condominiums/CreateC
 import DetailCondominium from "../components/DashboardAdmin/Condominiums/DetailCondominium";
 
 const DashboardAdmin = () => {
-  const [username, setUsername] = useState("");
-  useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    if (storedUsername) {
-      setUsername(storedUsername);
-    }
-  }, []);
-
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("email");
-    localStorage.removeItem("imageUrl");
-    localStorage.removeItem("isActive");
-    localStorage.removeItem("SuscriptionId");
-    localStorage.removeItem("token");
-    localStorage.removeItem("id");
-    navigate("/");
-  };
-
+  const username = localStorage.getItem("username");
   const [activeOption, setActiveOption] = useState("Inicial");
   const handleItemClick = (item) => {
     setActiveOption(item);
@@ -115,7 +95,7 @@ const DashboardAdmin = () => {
               <LogoNavbar />
               <ButtonSetTheme />
             </div>
-            <AdminProfileMenu handleLogout={handleLogout} />
+            <AdminProfileMenu />
           </div>
         </div>
       </nav>
@@ -184,11 +164,7 @@ const DashboardAdmin = () => {
               >
                 Hazte Pro
               </Sidebar.Item>
-              <Sidebar.Item
-                href="#"
-                icon={HiArrowSmLeft}
-                onClick={handleLogout}
-              >
+              <Sidebar.Item href="/" icon={HiArrowSmLeft}>
                 Salir
               </Sidebar.Item>
             </Sidebar.ItemGroup>
