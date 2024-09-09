@@ -1,12 +1,12 @@
-//
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createCondominium } from "../../Redux/features/getCondominium/createCondominiumSlice";
+import { createCondominium } from "../../../Redux/features/getCondominium/createCondominiumSlice";
 
 const CreateCondominium = ({ handleItemClick }) => {
   const dispatch = useDispatch();
 
-  const AdminId = localStorage.getItem("id");
+  const adminId = localStorage.getItem("id");
 
   const [formData, setFormData] = useState({
     isActive: true,
@@ -16,7 +16,7 @@ const CreateCondominium = ({ handleItemClick }) => {
     condominium_logo: "",
     condominiums_apartments_number: "",
     imageUrl: "",
-    AdminId,
+    AdminId: adminId,
   });
 
   const handleInputChange = (e) => {
@@ -30,8 +30,6 @@ const CreateCondominium = ({ handleItemClick }) => {
       // Guardar datos en localStorage
       localStorage.setItem("createdCondominium", JSON.stringify(action));
       console.log("Datos guardados en localStorage:", action);
-      // Redirigir a la lista de condominios
-      window.alert("condominio creado");
       handleItemClick("ViewCondominiums");
     } catch (error) {
       console.error("Error en la creación del condominio:", error);
@@ -111,6 +109,10 @@ const CreateCondominium = ({ handleItemClick }) => {
       </form>
     </div>
   );
+};
+
+CreateCondominium.propTypes = {
+  handleItemClick: PropTypes.func.isRequired,
 };
 
 export default CreateCondominium;

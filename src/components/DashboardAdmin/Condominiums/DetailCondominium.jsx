@@ -1,11 +1,9 @@
-//
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCondominium } from "../../Redux/features/getCondominium/updateCondominiumSlice";
+import { updateCondominium } from "../../../Redux/features/getCondominium/updateCondominiumSlice";
+import { deactivateCondominium } from "../../../Redux/features/getCondominium/deleteCondoSlice";
 
 const DetailCondominium = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [condominium, setCondominium] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -19,7 +17,12 @@ const DetailCondominium = () => {
     isActive: true,
   });
 
-  const { loading, error } = useSelector((state) => state.updateCondominium);
+  const { loading: updateLoading, error: updateError } = useSelector(
+    (state) => state.updateCondominium
+  );
+  const { loading: deactivateLoading, error: deactivateError } = useSelector(
+    (state) => state.deactivateCondominium
+  );
 
   useEffect(() => {
     const savedCondominium = JSON.parse(
@@ -63,28 +66,27 @@ const DetailCondominium = () => {
     }
   };
 
+  const handleDeactivate = async () => {
+    const id = condominium?.id;
+    if (id) {
+      try {
+        await dispatch(deactivateCondominium(id)).unwrap();
+        console.log("Condominio desactivado:", id);
+        // Actualiza el estado local si es necesario
+        setCondominium((prev) => ({ ...prev, isActive: false }));
+      } catch (error) {
+        console.error("Error al desactivar el condominio:", error);
+      }
+    }
+  };
+
   if (!condominium) {
     return <div>No hay información del condominio disponible</div>;
   }
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-lg rounded-lg">
-      <div className="bg-gray-800 p-4 text-white flex justify-between items-center">
-        <nav className="flex space-x-4">
-          <button
-            onClick={() => navigate("/profile")}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Perfil
-          </button>
-          <button
-            onClick={() => navigate("/crear-apartamentos")}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Crear Departamentos
-          </button>
-        </nav>
-      </div>
+      <div className="bg-gray-800 p-4 text-white flex justify-between items-center"></div>
       <div className="flex items-center mb-6">
         <img
           src={condominium.condominium_logo}
@@ -121,6 +123,16 @@ const DetailCondominium = () => {
             >
               Actualizar Condominio
             </button>
+            <button
+              onClick={handleDeactivate}
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-4"
+            >
+              Desactivar Condominio
+            </button>
+            {deactivateLoading && <p>Desactivando...</p>}
+            {deactivateError && (
+              <p className="text-red-500">Error: {deactivateError}</p>
+            )}
           </div>
         ) : (
           <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
@@ -190,8 +202,10 @@ const DetailCondominium = () => {
             >
               Guardar Cambios
             </button>
-            {loading && <p>Cargando...</p>}
-            {error && <p className="text-red-500">Error: {error}</p>}
+            {updateLoading && <p>Cargando...</p>}
+            {updateError && (
+              <p className="text-red-500">Error: {updateError}</p>
+            )}
           </form>
         )}
       </div>

@@ -5,10 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerAdmin } from "../Redux/features/register/createAdminSlice";
 
 const RegisterForm = () => {
-  //
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.createAdmin);
+  const { loading, error } = useSelector((state) => state.registerAdmin);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -25,19 +24,31 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       const response = await dispatch(registerAdmin(formData)).unwrap();
-      // Guardar datos en localStorage
-      localStorage.setItem("username", response.username || "");
-      localStorage.setItem("email", response.email || "");
-      localStorage.setItem("imageUrl", response.imageUrl || "");
-      localStorage.setItem(
-        "isActive",
-        response.isActive ? response.isActive.toString() : "false"
-      );
-      localStorage.setItem(
-        "SuscriptionId",
-        response.SuscriptionId ? response.SuscriptionId.toString() : ""
-      );
-      navigate("/dashboard-admin");
+
+      if (response && response.admin) {
+        localStorage.setItem("id", response.admin.id);
+        localStorage.setItem("username", response.admin.username || "");
+        localStorage.setItem("email", response.admin.email || "");
+        localStorage.setItem("imageUrl", response.admin.imageUrl || "");
+        localStorage.setItem(
+          "isActive",
+          response.admin.isActive ? "true" : "false"
+        );
+        if (response.admin.SuscriptionId != null) {
+          localStorage.setItem(
+            "SuscriptionId",
+            response.admin.SuscriptionId.toString()
+          );
+        } else {
+          localStorage.setItem("SuscriptionId", "");
+        }
+
+        localStorage.setItem("token", response.token || "");
+
+        navigate("/login");
+      } else {
+        console.error("Respuesta inesperada:", response);
+      }
     } catch (error) {
       console.error("Error en el registro:", error);
     }

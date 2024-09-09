@@ -21,7 +21,6 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const response = await dispatch(loginAdmin(formData)).unwrap();
-      console.log(response);
 
       if (response && response.admin) {
         localStorage.setItem("username", response.admin.username || "");
@@ -31,14 +30,13 @@ const LoginForm = () => {
           "isActive",
           response.admin.isActive ? "true" : "false"
         );
-        // Validación de SuscriptionId
         if (response.admin.SuscriptionId != null) {
           localStorage.setItem(
             "SuscriptionId",
             response.admin.SuscriptionId.toString()
           );
         } else {
-          localStorage.setItem("SuscriptionId", ""); // Guardar un valor vacío si no existe
+          localStorage.setItem("SuscriptionId", "");
         }
 
         localStorage.setItem("token", response.token || "");
