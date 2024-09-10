@@ -23,6 +23,7 @@ const LoginForm = () => {
       const response = await dispatch(loginAdmin(formData)).unwrap();
 
       if (response && response.admin) {
+        localStorage.setItem("id", response.admin.id);
         localStorage.setItem("username", response.admin.username || "");
         localStorage.setItem("email", response.admin.email || "");
         localStorage.setItem("imageUrl", response.admin.imageUrl || "");

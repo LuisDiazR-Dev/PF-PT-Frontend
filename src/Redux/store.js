@@ -24,12 +24,12 @@ export default configureStore({
     updateAdmin: adminUpdateSlice,
     createCondominium: createCondominiumSlice,
     updateCondominium: updateCondominiumSlice,
-    condominiumSlice: condominiumSlice,
+    condominiums: condominiumSlice,
     getCondoById: getCondoByIdSlice,
     deactivateCondominium: deactivateCondominiumSlice,
 
     apartments: apartmentSlice,
     createApartment: createApartmensSlice,
-    admin: adminReducer,
+    admins: adminReducer,
   },
 });
