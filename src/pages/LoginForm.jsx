@@ -42,7 +42,14 @@ const LoginForm = () => {
 
         localStorage.setItem("token", response.token || "");
 
-        navigate("/dashboard-admin");
+        if (
+          formData.email === "masteradmin@radmin.com" &&
+          formData.password === "rAdmin123"
+        ) {
+          navigate("/tenant");
+        } else {
+          navigate("/dashboard-admin");
+        }
       } else {
         console.error("Respuesta inesperada:", response);
       }
