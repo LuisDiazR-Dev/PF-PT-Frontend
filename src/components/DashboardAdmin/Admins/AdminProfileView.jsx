@@ -89,12 +89,18 @@ const AdminProfile = () => {
           <h2>{profile.email}</h2>
         </div>
       </div>
-      <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
+      <div className="flex justify-center space-x-4 py-4">
         <Link
           to="/update-profile"
           className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
         >
           Editar Perfil
+        </Link>
+        <Link
+          to="/dashboard-admin"
+          className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+        >
+          Ir a mi Dashboard
         </Link>
       </div>
     </div>
