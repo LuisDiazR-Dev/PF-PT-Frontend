@@ -14,6 +14,7 @@ import DashboardAdmin from "./pages/DashboardAdmin";
 import DashboardTenant from "./pages/DashboardTenant";
 import AdminProfile from "./components/DashboardAdmin/Admins/AdminProfileView";
 import AdminUpdateProfile from "./components/DashboardAdmin/Admins/AdminUpdateProfile";
+//import DetailAdmin from "./components/DashboardTenant/Admins/DetailEditAdmin";
 
 function App() {
   // set Theme
@@ -40,6 +41,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/dashboard-admin" element={<DashboardAdmin />} />
         <Route path="/tenant" element={<DashboardTenant />} />
+        {/* <Route path="/admindetail" element={<DetailAdmin/>} /> */}
         <Route path="/profile" element={<AdminProfile />} />
         <Route path="/update-profile" element={<AdminUpdateProfile />} />
       </Routes>

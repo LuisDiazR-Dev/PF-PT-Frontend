@@ -13,6 +13,9 @@ import condominiumSlice from "./features/getCondominium/condominiumSlice";
 import apartmentSlice from "./features/getApartments/apartmentsSlice";
 import adminReducer from "./features/tenants/getAdminsUsersSlice";
 import createApartmensSlice from "./features/getApartments/createApartmensSlice";
+import getAdminByIdSlice from "./features/tenants/getAdminUserByIdSlice";
+import deleteAdminReducer from "./features/tenants/deleteAdminSlice";
+import updateAdminSlice from "./features/tenants/updateAdminSlice";
 
 export default configureStore({
   reducer: {
@@ -31,5 +34,8 @@ export default configureStore({
     apartments: apartmentSlice,
     createApartment: createApartmensSlice,
     admins: adminReducer,
+    getAdminById: getAdminByIdSlice,
+    deleteAdmin: deleteAdminReducer,
+    activateAdmin: updateAdminSlice,
   },
 });

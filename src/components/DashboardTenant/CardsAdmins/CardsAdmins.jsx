@@ -1,14 +1,14 @@
-// CardsAdmins.jsx
+import Proptypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAdmins } from "../../../Redux/features/tenants/getAdminsUsersSlice";
 import { fetchCondominiums } from "../../../Redux/features/getCondominium/condominiumSlice";
 import AdminCard from "./cardAdmin";
 
-const CardsAdmins = () => {
+const CardsAdmins = ({ setSelectedAdmin }) => {
   const dispatch = useDispatch();
-  const admins = useSelector((state) => state.admins.admins); // Corregido selector
-  const condominiums = useSelector((state) => state.condominiums.condominiums); // Corregido selector
+  const admins = useSelector((state) => state.admins.admins);
+  const condominiums = useSelector((state) => state.condominiums.condominiums);
   const [filteredAdmins, setFilteredAdmins] = useState([]);
 
   useEffect(() => {
@@ -47,17 +47,18 @@ const CardsAdmins = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {filteredAdmins.length > 0 ? (
             filteredAdmins.map((admin) => (
-              <AdminCard
-                key={admin.id}
-                id={admin.id}
-                username={admin.username}
-                email={admin.email}
-                registration_date={admin.registration_date}
-                isActive={admin.isActive}
-                imageUrl={admin.imageUrl}
-                SuscriptionId={admin.SuscriptionId}
-                CondominiumName={admin.CondominiumName}
-              />
+              <div key={admin.id} onClick={() => setSelectedAdmin(admin)}>
+                <AdminCard
+                  id={admin.id}
+                  username={admin.username}
+                  email={admin.email}
+                  registration_date={admin.registration_date}
+                  isActive={admin.isActive}
+                  imageUrl={admin.imageUrl}
+                  SuscriptionId={admin.SuscriptionId}
+                  CondominiumName={admin.CondominiumName}
+                />
+              </div>
             ))
           ) : (
             <p className="text-gray-600 dark:text-gray-400">
@@ -72,6 +73,9 @@ const CardsAdmins = () => {
       )}
     </div>
   );
+};
+CardsAdmins.propTypes = {
+  setSelectedAdmin: Proptypes.func.isRequired,
 };
 
 export default CardsAdmins;

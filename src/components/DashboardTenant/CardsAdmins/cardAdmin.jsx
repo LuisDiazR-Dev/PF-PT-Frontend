@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { getAdminById } from "../../../Redux/features/tenants/getAdminUserByIdSlice";
 
 export const AdminCard = ({
   id,
@@ -10,8 +12,14 @@ export const AdminCard = ({
   SuscriptionId,
   CondominiumName,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(getAdminById(id));
+  };
   return (
     <div
+      onClick={handleClick}
       className={`max-w-sm bg-white border border-gray-200 rounded-lg shadow ${
         !isActive ? "opacity-50" : ""
       } dark:bg-gray-800 dark:border-gray-700`}
@@ -54,7 +62,7 @@ AdminCard.propTypes = {
   registration_date: PropTypes.string,
   isActive: PropTypes.bool.isRequired,
   imageUrl: PropTypes.string,
-  SuscriptionId: PropTypes.number.isRequired,
+  SuscriptionId: PropTypes.number,
   CondominiumName: PropTypes.string.isRequired,
 };
 
