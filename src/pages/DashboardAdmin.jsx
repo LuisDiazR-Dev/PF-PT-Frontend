@@ -21,18 +21,11 @@ import DetailCondominium from "../components/DashboardAdmin/Condominiums/DetailC
 const DashboardAdmin = () => {
   const username = localStorage.getItem("username");
   const [activeOption, setActiveOption] = useState("Inicial");
-  const [selectedCondoId, setSelectedCondoId] = useState(null);
-
   const handleItemClick = (item) => {
     setActiveOption(item);
   };
 
-  const handleCondoSelect = (id) => {
-    console.log(`Condo selected: ${id}`);
-    setSelectedCondoId(id);
-    setActiveOption("DetailCondominium");
-  };
-
+  // renderizado según opción activa
   const componentMap = {
     Inicial: () => (
       <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
@@ -41,13 +34,12 @@ const DashboardAdmin = () => {
     ),
 
     ViewCondominiums: () => (
-      <ViewCondominiums
-        setActiveOption={setActiveOption}
-        onCondoSelect={handleCondoSelect}
-      />
+      <ViewCondominiums setActiveOption={setActiveOption} />
     ),
 
-    DetailCondominium: () => <DetailCondominium condoId={selectedCondoId} />,
+    DetailCondominium: () => (
+      <DetailCondominium setActiveOption={setActiveOption} />
+    ),
 
     CreateCondominium: () => (
       <CreateCondominium handleItemClick={handleItemClick} />
@@ -138,7 +130,7 @@ const DashboardAdmin = () => {
                 >
                   Crear +
                 </Sidebar.Item>
-                <Sidebar.Item
+                {/* <Sidebar.Item
                   href="#"
                   className={
                     activeOption === "DeletedCondominium" ? "bg-gray-200" : ""
@@ -146,7 +138,7 @@ const DashboardAdmin = () => {
                   onClick={() => handleItemClick("DeletedCondominium")}
                 >
                   Borrados
-                </Sidebar.Item>
+                </Sidebar.Item> */}
               </Sidebar.Collapse>
 
               <Sidebar.Collapse icon={HiTable} label="Apartamentos">

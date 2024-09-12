@@ -1,0 +1,20 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que la app ocupe al menos el alto de la pantalla */
+}
+
+.App main {
+  flex-grow: 1; /* El contenido principal crecerá para ocupar el espacio disponible */
+}
+
+.NavBar {
+  /* Si tienes estilos para el NavBar, aquí los defines */
+}
+
+.Footerx {
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}

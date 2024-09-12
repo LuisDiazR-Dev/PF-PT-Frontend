@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { createCondominium } from "../../../Redux/features/getCondominium/createCondominiumSlice";
-import { fetchCondominiums } from "../../../Redux/features/getCondominium/condominiumSlice";
 
 const CreateCondominium = ({ handleItemClick }) => {
   const dispatch = useDispatch();
-  const { condominiums } = useSelector((state) => state.condominiums);
+
+  const adminId = localStorage.getItem("id");
 
   const [formData, setFormData] = useState({
     isActive: true,
@@ -16,15 +16,8 @@ const CreateCondominium = ({ handleItemClick }) => {
     condominium_logo: "",
     condominiums_apartments_number: "",
     imageUrl: "",
-    AdminId: localStorage.getItem("id"),
+    AdminId: adminId,
   });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    dispatch(fetchCondominiums());
-  }, [dispatch]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,38 +25,19 @@ const CreateCondominium = ({ handleItemClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
-    setIsSubmitting(true);
-    setError(null);
-    const nameExists = condominiums.some(
-      (condominium) =>
-        condominium.condominium_name === formData.condominium_name
-    );
-
-    if (nameExists) {
-      setError("El nombre del condominio ya existe.");
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
-      await dispatch(createCondominium(formData)).unwrap();
+      const action = await dispatch(createCondominium(formData)).unwrap();
+      console.log("Datos guardados en localStorage:", action);
       handleItemClick("ViewCondominiums");
     } catch (error) {
       console.error("Error en la creación del condominio:", error);
-      setError("Hubo un error al crear el condominio.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-gray-300 shadow-lg rounded-lg">
+    <div className="max-w-md mx-auto  p-6 bg-gray-300 shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Crear Condominio</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
-          <div className="bg-red-100 text-red-800 p-2 rounded-md">{error}</div>
-        )}
         <label className="block">
           Nombre del Condominio
           <input
@@ -127,7 +101,6 @@ const CreateCondominium = ({ handleItemClick }) => {
         <button
           type="submit"
           className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          disabled={isSubmitting}
         >
           Crear Condominio
         </button>

@@ -7,6 +7,7 @@ export const getCondoById = createAsyncThunk(
     const response = await axios.get(
       `http://localhost:3001/api/condominiums/${id}`
     );
+    console.log(response.data);
     return response.data;
   }
 );
@@ -14,7 +15,17 @@ export const getCondoById = createAsyncThunk(
 const getCondoByIdSlice = createSlice({
   name: "Condominium",
   initialState: {
-    condominium: null,
+    condominium: {
+      AdminId: null,
+      condominium_country: "",
+      condominium_logo: "",
+      condominium_name: "",
+      condominium_state: "",
+      condominiums_apartments_number: 0,
+      id: null,
+      imageUrl: "",
+      isActive: false,
+    },
     status: "idle",
     error: null,
   },
@@ -26,7 +37,9 @@ const getCondoByIdSlice = createSlice({
       })
       .addCase(getCondoById.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.condominium = action.payload;
+        state.condominium = {
+          ...action.payload,
+        };
       })
       .addCase(getCondoById.rejected, (state, action) => {
         state.status = "failed";

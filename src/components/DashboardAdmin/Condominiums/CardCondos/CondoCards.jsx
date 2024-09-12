@@ -9,8 +9,7 @@ const CondoCards = ({ setActiveOption }) => {
   const AdminId = localStorage.getItem("id")?.trim();
 
   const { condominiums, status, error } = useSelector(
-    (state) =>
-      state.condominiums || { condominiums: [], status: "idle", error: null }
+    (state) => state.condominiums
   );
 
   useEffect(() => {
@@ -25,18 +24,16 @@ const CondoCards = ({ setActiveOption }) => {
     return <p>Error al cargar los condominios: {error}</p>;
   }
 
-  const filteredCondominiums = Array.isArray(condominiums)
-    ? condominiums.filter((condominium) => {
-        return condominium.AdminId?.trim() === AdminId;
-      })
-    : [];
+  const filteredCondominiums = condominiums.filter((condominium) => {
+    return condominium.AdminId?.trim() === AdminId;
+  });
 
   if (!filteredCondominiums.length) {
     return <p>No hay condominios asociados a este administrador</p>;
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="flex flex-wrap justify-center lg:justify-start gap-4 ">
       {filteredCondominiums.map((condominium) => (
         <CondoCard
           key={condominium.id}
@@ -50,7 +47,7 @@ const CondoCards = ({ setActiveOption }) => {
             condominium.condominiums_apartments_number
           }
           imageUrl={condominium.imageUrl}
-          setActiveOption={setActiveOption}
+          setActiveOption={setActiveOption} // Asegúrate de pasar esta prop
         />
       ))}
     </div>
