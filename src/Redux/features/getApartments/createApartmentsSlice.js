@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import endpoint from '../../../_utils/SwitchEndpoints-local-deploy'
 
 export const createApartment = createAsyncThunk(
 	'apartments/create',
 	async (apartmentData, { rejectWithValue }) => {
 		try {
 			const response = await axios.post(
-				'http://localhost:3001/api/apartments',
+				endpoint.createApartment,
 				apartmentData
 			)
 			return response.data
@@ -17,7 +18,7 @@ export const createApartment = createAsyncThunk(
 )
 
 const createApartmentSlice = createSlice({
-	name: 'createAparments',
+	name: 'createApartments',
 	initialState: {
 		Apartments: [],
 		status: 'idle',

@@ -12,7 +12,7 @@ import deactivateCondominiumSlice from "./features/getCondominium/deleteCondoSli
 import condominiumSlice from "./features/getCondominium/condominiumSlice";
 import apartmentSlice from "./features/getApartments/apartmentsSlice";
 import adminReducer from "./features/tenants/getAdminsUsersSlice";
-import createApartmensSlice from "./features/getApartments/createApartmensSlice";
+import createApartmentsSlice from "./features/getApartments/createApartmentsSlice";
 
 import setCondoToAdminReducer from "./features/ToggleSwitchSelectCondo/setCondoToAdminSlice";
 
@@ -33,7 +33,7 @@ export default configureStore({
     deactivateCondominium: deactivateCondominiumSlice,
 
     apartments: apartmentSlice,
-    createApartment: createApartmensSlice,
+    createApartment: createApartmentsSlice,
     admin: adminReducer,
   },
 });

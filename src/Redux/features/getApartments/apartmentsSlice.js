@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import endpoint from '../../../_utils/SwitchEndpoints-local-deploy'
 import axios from 'axios'
 
 export const fetchApartments = createAsyncThunk(
 	'apartments/fetchApartments',
 	async () => {
-		const response = await axios.get('http://localhost:3001/api/apartments')
+		const response = await axios.get(endpoint.getApartment)
 		return response.data
 	}
 )
