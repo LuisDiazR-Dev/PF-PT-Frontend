@@ -4,7 +4,7 @@ const LogoNavbar = () => {
   return (
     <Link className="flex ms-2 md:me-24" to="/">
       <img
-        src="/public/Residential Logo favicon sin fondo2.png"
+        src="/Residential Logo favicon sin fondo2.png"
         className="mr-3 h-6 sm:h-9"
         alt="R-admin Logo"
       />

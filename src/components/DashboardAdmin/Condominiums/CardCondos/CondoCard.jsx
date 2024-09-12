@@ -10,7 +10,6 @@ const CondoCard = ({
   id,
   condominium_name,
   condominium_country,
-  condominium_state,
   condominium_logo,
   condominiums_apartments_number,
   setActiveOption,
