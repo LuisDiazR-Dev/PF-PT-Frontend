@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import endpoint from "../../../_utils/SwitchEndpoints-local-deploy";
+
 import axios from "axios";
 
 export const updateAdmin = createAsyncThunk(
@@ -7,7 +9,7 @@ export const updateAdmin = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:3001/api/admin/${id}`,
+        `${endpoint.registerUpdate}/${id}`,
         updatedData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

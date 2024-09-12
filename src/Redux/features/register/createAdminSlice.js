@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import endpoint from "../../../_utils/SwitchEndpoints-local-deploy";
 import axios from "axios";
 
 export const registerAdmin = createAsyncThunk(
@@ -6,7 +7,7 @@ export const registerAdmin = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/admin",
+        endpoint.registerCreate,
         formData
       );
       return response.data;

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import endpoint from "../../../_utils/SwitchEndpoints-local-deploy";
 import axios from "axios";
 
 // Define la acción asíncrona para el inicio de sesión
@@ -6,10 +7,8 @@ export const loginAdmin = createAsyncThunk(
   "loginAdmin",
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/api/auth/login",
-        formData
-      );
+      const response = await axios
+      .post( endpoint.registerLogin, formData );
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {
