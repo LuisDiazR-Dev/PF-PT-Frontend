@@ -12,11 +12,14 @@ import { useState } from "react";
 import LogoNavbar from "../components/Navbar/LogoNavbar";
 import ButtonSetTheme from "../components/SetTheme/ButtonSetTheme";
 import SearchBar from "../components/DashboardAdmin/SearchBar";
-import ViewApartments from "../components/DashboardAdmin/ViewApartments";
+
 import ViewCondominiums from "../components/DashboardAdmin/Condominiums/ViewCodominiums";
 import AdminProfileMenu from "../components/DashboardAdmin/Admins/AdminProfileMenu";
 import CreateCondominium from "../components/DashboardAdmin/Condominiums/CreateCondominium";
 import DetailCondominium from "../components/DashboardAdmin/Condominiums/DetailCondominium";
+
+import ViewApartments from "../components/DashboardAdmin/Apartments/ViewApartments";
+import CreateApartments from "../components/DashboardAdmin/Apartments/CreateApartments";
 
 const DashboardAdmin = () => {
   const username = localStorage.getItem("username");
@@ -25,7 +28,6 @@ const DashboardAdmin = () => {
     setActiveOption(item);
   };
 
-  // renderizado según opción activa
   const componentMap = {
     Inicial: () => (
       <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
@@ -47,6 +49,10 @@ const DashboardAdmin = () => {
 
     ViewApartments: () => <ViewApartments setActiveOption={setActiveOption} />,
 
+    CreateApartments: () => (
+      <CreateApartments handleItemClick={handleItemClick} />
+    ),
+
     Notificaciones: () => (
       <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         Notificaciones - Próximamente
@@ -62,7 +68,11 @@ const DashboardAdmin = () => {
 
   const ActiveComponent = componentMap[activeOption];
 
-  const hiddenSearchBar = ["CreateCondominium", "DetailCondominium"];
+  const hiddenSearchBar = [
+    "CreateCondominium",
+    "DetailCondominium",
+    "CreateApartments",
+  ];
 
   return (
     <div className="">
@@ -142,8 +152,24 @@ const DashboardAdmin = () => {
               </Sidebar.Collapse>
 
               <Sidebar.Collapse icon={HiTable} label="Apartamentos">
-                <Sidebar.Item href="#">Todos</Sidebar.Item>
-                <Sidebar.Item href="#">Crear</Sidebar.Item>
+                <Sidebar.Item
+                  href="#"
+                  className={
+                    activeOption === "ViewApartments" ? "bg-gray-200" : ""
+                  }
+                  onClick={() => handleItemClick("ViewApartments")}
+                >
+                  Todos
+                </Sidebar.Item>
+                <Sidebar.Item
+                  href="#"
+                  className={
+                    activeOption === "CreateApartments" ? "bg-gray-200" : ""
+                  }
+                  onClick={() => handleItemClick("CreateApartments")}
+                >
+                  Crear Departamentos
+                </Sidebar.Item>
               </Sidebar.Collapse>
 
               <Sidebar.Item href="#" icon={HiInbox} label="3">
