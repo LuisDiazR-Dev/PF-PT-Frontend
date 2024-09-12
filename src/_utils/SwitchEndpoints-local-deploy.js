@@ -1,22 +1,18 @@
 // ! Local
-const endpointURL = 'http://localhost:3001'
+const endpointURL = "http://localhost:3001";
 
 // ! Deploy
 // const endpointURL = 'http://localhost:3001'
 
-
 const endpoint = Object.freeze({
+  registerLogin: `${endpointURL}/api/auth/login`,
+  registerCreate: `${endpointURL}/api/admin`,
+  registerUpdate: `${endpointURL}/api/admin`,
 
-	registerLogin:		`${endpointURL}/api/auth/login`,
-	registerCreate:		"http://localhost:3001/api/admin",
-	registerUpdate:		"http://localhost:3001/api/admin",
+  getApartment: `${endpointURL}/api/apartments`,
+  createApartment: `${endpointURL}/api/apartments`,
+  updateApartment: (id) => `${endpointURL}/api/apartments/${id}`,
+  deleteApartment: (id) => `${endpointURL}/api/apartments/${id}`,
+});
 
-	getApartment: 		"http://localhost:3001/api/apartments",
-	createApartment: 	"http://localhost:3001/api/apartments"
-
-
-
-
-})
-
-export default endpoint
+export default endpoint;
