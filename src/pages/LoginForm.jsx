@@ -32,7 +32,7 @@ const LoginForm = () => {
           return;
         }
 
-        localStorage.setItem("id", response.admin.id);
+        localStorage.setItem("id", response.admin.id || "");
         localStorage.setItem("username", response.admin.username || "");
         localStorage.setItem("email", response.admin.email || "");
         localStorage.setItem("imageUrl", response.admin.imageUrl || "");
@@ -84,7 +84,7 @@ const LoginForm = () => {
               onClick={() => alert("Funcionalidad pendiente")}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-4"
             >
-              Contáctanos
+              Contáctenos
             </button>
             <button
               onClick={() => navigate("/")}

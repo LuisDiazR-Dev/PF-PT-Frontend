@@ -9,7 +9,8 @@ import createCondominiumSlice from "./features/getCondominium/createCondominiumS
 import updateCondominiumSlice from "./features/getCondominium/updateCondominiumSlice";
 import getCondoByIdSlice from "./features/getCondominium/getCondoById";
 import deactivateCondominiumSlice from "./features/getCondominium/deleteCondoSlice";
-import setCondoToAdminSlice from "./features/ToggleSwitchSelectCondo/setCondoToAdminSlice";
+
+
 import condominiumSlice from "./features/getCondominium/condominiumSlice";
 
 import createApartmentsSlice from "./features/getApartments/createApartmentsSlice";
@@ -35,7 +36,7 @@ export default configureStore({
     condominiums: condominiumSlice,
     getCondoById: getCondoByIdSlice,
     deactivateCondominium: deactivateCondominiumSlice,
-    setCondoToAdmin: setCondoToAdminSlice,
+    
 
     createApartment: createApartmentsSlice,
     apartments: apartmentsSlice,
