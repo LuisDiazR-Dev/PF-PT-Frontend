@@ -15,8 +15,8 @@ import AdminProfile from "./components/DashboardAdmin/Admins/AdminProfileView";
 import AdminUpdateProfile from "./components/DashboardAdmin/Admins/AdminUpdateProfile";
 
 function App() {
-  // set Theme
   const theme = useSelector((state) => state.theme.theme);
+
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -29,18 +29,19 @@ function App() {
   const hiddenNavBarRoutes = ["/dashboard-admin", "/profile"];
 
   return (
-    <div className="">
-      {/* Solo rendering la NavBar si la ruta actual no está en hiddenNavBarRoutes */}
+    <div className="App">
       {!hiddenNavBarRoutes.includes(location.pathname) && <NavBar />}
 
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/dashboard-admin" element={<DashboardAdmin />} />
-        <Route path="/profile" element={<AdminProfile />} />
-        <Route path="/update-profile" element={<AdminUpdateProfile />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/dashboard-admin" element={<DashboardAdmin />} />
+          <Route path="/profile" element={<AdminProfile />} />
+          <Route path="/update-profile" element={<AdminUpdateProfile />} />
+        </Routes>
+      </main>
 
       {!hiddenNavBarRoutes.includes(location.pathname) && <Footerx />}
     </div>

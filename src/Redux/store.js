@@ -14,8 +14,12 @@ import apartmentSlice from "./features/getApartments/apartmentsSlice";
 import adminReducer from "./features/tenants/getAdminsUsersSlice";
 import createApartmensSlice from "./features/getApartments/createApartmensSlice";
 
+import setCondoToAdminReducer from "./features/ToggleSwitchSelectCondo/setCondoToAdminSlice";
+
 export default configureStore({
   reducer: {
+    
+    setCondoToAdmin: setCondoToAdminReducer,
     counter: counter,
     theme: theme,
 

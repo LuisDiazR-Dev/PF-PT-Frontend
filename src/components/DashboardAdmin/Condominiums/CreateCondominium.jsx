@@ -27,8 +27,6 @@ const CreateCondominium = ({ handleItemClick }) => {
     e.preventDefault();
     try {
       const action = await dispatch(createCondominium(formData)).unwrap();
-      // Guardar datos en localStorage
-      localStorage.setItem("createdCondominium", JSON.stringify(action));
       console.log("Datos guardados en localStorage:", action);
       handleItemClick("ViewCondominiums");
     } catch (error) {

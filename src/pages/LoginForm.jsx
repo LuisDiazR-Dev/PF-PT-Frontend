@@ -21,8 +21,10 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const response = await dispatch(loginAdmin(formData)).unwrap();
+      console.log(response);
 
       if (response && response.admin) {
+        localStorage.setItem("id", response.admin.id || "");
         localStorage.setItem("username", response.admin.username || "");
         localStorage.setItem("email", response.admin.email || "");
         localStorage.setItem("imageUrl", response.admin.imageUrl || "");
@@ -30,15 +32,17 @@ const LoginForm = () => {
           "isActive",
           response.admin.isActive ? "true" : "false"
         );
-        if (response.admin.SuscriptionId != null) {
-          localStorage.setItem(
-            "SuscriptionId",
-            response.admin.SuscriptionId.toString()
-          );
-        } else {
-          localStorage.setItem("SuscriptionId", "");
-        }
+        localStorage.setItem(
+          "registration_date",
+          response.admin.registration_date || ""
+        );
 
+        localStorage.setItem(
+          "SuscriptionId",
+          response.admin.SuscriptionId || ""
+        );
+
+        // Guardar token
         localStorage.setItem("token", response.token || "");
 
         navigate("/dashboard-admin");

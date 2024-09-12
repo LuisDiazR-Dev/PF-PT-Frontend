@@ -130,7 +130,7 @@ const DashboardAdmin = () => {
                 >
                   Crear +
                 </Sidebar.Item>
-                <Sidebar.Item
+                {/* <Sidebar.Item
                   href="#"
                   className={
                     activeOption === "DeletedCondominium" ? "bg-gray-200" : ""
@@ -138,7 +138,7 @@ const DashboardAdmin = () => {
                   onClick={() => handleItemClick("DeletedCondominium")}
                 >
                   Borrados
-                </Sidebar.Item>
+                </Sidebar.Item> */}
               </Sidebar.Collapse>
 
               <Sidebar.Collapse icon={HiTable} label="Apartamentos">
