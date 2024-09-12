@@ -21,11 +21,18 @@ import DetailCondominium from "../components/DashboardAdmin/Condominiums/DetailC
 const DashboardAdmin = () => {
   const username = localStorage.getItem("username");
   const [activeOption, setActiveOption] = useState("Inicial");
+  const [selectedCondoId, setSelectedCondoId] = useState(null);
+
   const handleItemClick = (item) => {
     setActiveOption(item);
   };
 
-  // renderizado según opción activa
+  const handleCondoSelect = (id) => {
+    console.log(`Condo selected: ${id}`);
+    setSelectedCondoId(id);
+    setActiveOption("DetailCondominium");
+  };
+
   const componentMap = {
     Inicial: () => (
       <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
@@ -34,12 +41,13 @@ const DashboardAdmin = () => {
     ),
 
     ViewCondominiums: () => (
-      <ViewCondominiums setActiveOption={setActiveOption} />
+      <ViewCondominiums
+        setActiveOption={setActiveOption}
+        onCondoSelect={handleCondoSelect}
+      />
     ),
 
-    DetailCondominium: () => (
-      <DetailCondominium setActiveOption={setActiveOption} />
-    ),
+    DetailCondominium: () => <DetailCondominium condoId={selectedCondoId} />,
 
     CreateCondominium: () => (
       <CreateCondominium handleItemClick={handleItemClick} />

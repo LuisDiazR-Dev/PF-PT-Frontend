@@ -1,11 +1,12 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCondominium } from "../../../Redux/features/getCondominium/updateCondominiumSlice";
 import { deactivateCondominium } from "../../../Redux/features/getCondominium/deleteCondoSlice";
+import { getCondoById } from "../../../Redux/features/getCondominium/getCondoById";
 
-const DetailCondominium = () => {
+const DetailCondominium = ({ selectedCondoId }) => {
   const dispatch = useDispatch();
-  const [condominium, setCondominium] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     condominium_name: "",
@@ -14,9 +15,13 @@ const DetailCondominium = () => {
     condominium_logo: "",
     condominiums_apartments_number: "",
     imageUrl: "",
-    isActive: true,
   });
 
+  const {
+    condominium,
+    loading: condoLoading,
+    error: condoError,
+  } = useSelector((state) => state.getCondoById);
   const { loading: updateLoading, error: updateError } = useSelector(
     (state) => state.updateCondominium
   );
@@ -25,40 +30,38 @@ const DetailCondominium = () => {
   );
 
   useEffect(() => {
-    const savedCondominium = JSON.parse(
-      localStorage.getItem("createdCondominium")
-    );
-    if (savedCondominium && savedCondominium.condominium) {
-      setCondominium(savedCondominium.condominium);
-      setFormData({
-        condominium_name: savedCondominium.condominium.condominium_name,
-        condominium_country: savedCondominium.condominium.condominium_country,
-        condominium_state: savedCondominium.condominium.condominium_state,
-        condominium_logo: savedCondominium.condominium.condominium_logo,
-        condominiums_apartments_number:
-          savedCondominium.condominium.condominiums_apartments_number,
-        imageUrl: savedCondominium.condominium.imageUrl,
-        isActive: savedCondominium.condominium.isActive,
-      });
+    // Disparar la acción para obtener los detalles del condominio por ID
+    if (selectedCondoId) {
+      dispatch(getCondoById(selectedCondoId));
     } else {
-      console.error("No se encontró el condominio en localStorage");
+      console.error("ID del condominio no disponible");
     }
-  }, []);
+  }, [dispatch, selectedCondoId]);
+
+  useEffect(() => {
+    if (condominium) {
+      setFormData({
+        condominium_name: condominium.condominium_name,
+        condominium_country: condominium.condominium_country,
+        condominium_state: condominium.condominium_state,
+        condominium_logo: condominium.condominium_logo,
+        condominiums_apartments_number:
+          condominium.condominiums_apartments_number,
+        imageUrl: condominium.imageUrl,
+      });
+    }
+  }, [condominium]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleUpdate = async () => {
-    const id = condominium?.id;
-    if (id) {
-      const AdminId = localStorage.getItem("id");
+    if (selectedCondoId) {
       try {
-        const action = await dispatch(
-          updateCondominium({ id, updatedData: { ...formData, AdminId } })
+        await dispatch(
+          updateCondominium({ id: selectedCondoId, updatedData: formData })
         ).unwrap();
-        localStorage.setItem("createdCondominium", JSON.stringify(action));
-        console.log("Datos actualizados en localStorage:", action);
         setIsEditing(false);
       } catch (error) {
         console.error("Error en la actualización del condominio:", error);
@@ -67,21 +70,21 @@ const DetailCondominium = () => {
   };
 
   const handleDeactivate = async () => {
-    const id = condominium?.id;
-    if (id) {
+    if (selectedCondoId) {
       try {
-        await dispatch(deactivateCondominium(id)).unwrap();
-        console.log("Condominio desactivado:", id);
-        // Actualiza el estado local si es necesario
-        setCondominium((prev) => ({ ...prev, isActive: false }));
+        await dispatch(deactivateCondominium(selectedCondoId)).unwrap();
       } catch (error) {
         console.error("Error al desactivar el condominio:", error);
       }
     }
   };
 
-  if (!condominium) {
-    return <div>No hay información del condominio disponible</div>;
+  if (condoLoading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (condoError || !condominium) {
+    return <div>Error al obtener la información del condominio</div>;
   }
 
   return (
@@ -211,6 +214,9 @@ const DetailCondominium = () => {
       </div>
     </div>
   );
+};
+DetailCondominium.propTypes = {
+  selectedCondoId: PropTypes.number.isRequired,
 };
 
 export default DetailCondominium;
