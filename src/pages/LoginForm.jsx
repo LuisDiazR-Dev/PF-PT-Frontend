@@ -25,19 +25,14 @@ const LoginForm = () => {
     setLoginError(null);
     try {
       const response = await dispatch(loginAdmin(formData)).unwrap();
-      console.log(response);
 
       if (response && response.admin) {
-<<<<<<< HEAD
-        localStorage.setItem("id", response.admin.id || "");
-=======
         if (!response.admin.isActive) {
           setIsAccountDisabled(true);
           return;
         }
 
         localStorage.setItem("id", response.admin.id);
->>>>>>> jesulin-restored
         localStorage.setItem("username", response.admin.username || "");
         localStorage.setItem("email", response.admin.email || "");
         localStorage.setItem("imageUrl", response.admin.imageUrl || "");
@@ -46,24 +41,11 @@ const LoginForm = () => {
           response.admin.isActive ? "true" : "false"
         );
         localStorage.setItem(
-<<<<<<< HEAD
-          "registration_date",
-          response.admin.registration_date || ""
-        );
-
-        localStorage.setItem(
-          "SuscriptionId",
-          response.admin.SuscriptionId || ""
-        );
-
-        // Guardar token
-=======
           "SuscriptionId",
           response.admin.SuscriptionId != null
             ? response.admin.SuscriptionId.toString()
             : ""
         );
->>>>>>> jesulin-restored
         localStorage.setItem("token", response.token || "");
 
         navigate(
