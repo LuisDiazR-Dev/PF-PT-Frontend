@@ -9,12 +9,17 @@ import updateCondominiumSlice from "./features/getCondominium/updateCondominiumS
 import getCondoByIdSlice from "./features/getCondominium/getCondoById";
 import deactivateCondominiumSlice from "./features/getCondominium/deleteCondoSlice";
 
+
 import condominiumSlice from "./features/getCondominium/condominiumSlice";
 import apartmentSlice from "./features/getApartments/apartmentsSlice";
 import adminReducer from "./features/tenants/getAdminsUsersSlice";
 import createApartmentsSlice from "./features/getApartments/createApartmentsSlice";
 
 import setCondoToAdminReducer from "./features/ToggleSwitchSelectCondo/setCondoToAdminSlice";
+
+import getAdminByIdSlice from "./features/tenants/getAdminUserByIdSlice";
+import deleteAdminReducer from "./features/tenants/deleteAdminSlice";
+import updateAdminSlice from "./features/tenants/updateAdminSlice";
 
 export default configureStore({
   reducer: {
@@ -28,12 +33,18 @@ export default configureStore({
     updateAdmin: adminUpdateSlice,
     createCondominium: createCondominiumSlice,
     updateCondominium: updateCondominiumSlice,
-    condominiumSlice: condominiumSlice,
+    condominiums: condominiumSlice,
     getCondoById: getCondoByIdSlice,
     deactivateCondominium: deactivateCondominiumSlice,
+    
 
     apartments: apartmentSlice,
     createApartment: createApartmentsSlice,
     admin: adminReducer,
+    
+    admins: adminReducer,
+    getAdminById: getAdminByIdSlice,
+    deleteAdmin: deleteAdminReducer,
+    activateAdmin: updateAdminSlice,
   },
 });

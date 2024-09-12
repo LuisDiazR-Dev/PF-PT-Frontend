@@ -9,7 +9,7 @@ const CondoCards = ({ setActiveOption }) => {
   const AdminId = localStorage.getItem("id")?.trim();
 
   const { condominiums, status, error } = useSelector(
-    (state) => state.condominiumSlice
+    (state) => state.condominiums
   );
 
   useEffect(() => {
