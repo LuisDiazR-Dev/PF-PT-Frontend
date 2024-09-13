@@ -49,7 +49,7 @@ const SectionCta = () => {
         <div>
           <iframe
             className="mx-auto w-full lg:max-w-xl h-64 rounded-lg sm:h-96 shadow-xl border-none"
-            src="https://www.youtube.com/embed/KaLxCiilHns"
+            src="https://www.youtube.com/embed/BJIBdEl9pIE"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
