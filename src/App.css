@@ -8,8 +8,9 @@
   flex-grow: 1; /* El contenido principal crecerá para ocupar el espacio disponible */
 }
 
-.NavBar {
-  /* Si tienes estilos para el NavBar, aquí los defines */
+/* Aplica la fuente en el cuerpo */
+body {
+  font-family: "Roboto", sans-serif;
 }
 
 .Footerx {

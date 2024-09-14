@@ -13,6 +13,8 @@ const endpoint = Object.freeze({
   createApartment: `${endpointURL}/api/apartments`,
   updateApartment: (id) => `${endpointURL}/api/apartments/${id}`,
   deleteApartment: (id) => `${endpointURL}/api/apartments/${id}`,
+
+  getSuscriptions: `${endpointURL}/api/suscriptions`,
 });
 
 export default endpoint;

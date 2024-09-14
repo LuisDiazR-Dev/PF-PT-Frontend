@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import endpoint from "../../../_utils/SwitchEndpoints-local-deploy";
 
 export const getSuscriptions = createAsyncThunk(
   "suscriptions/getSuscriptions",
   async () => {
-    const response = await axios.get("http://localhost:3001/api/suscriptions");
-    console.log(response.data);
+    const response = await axios.get(endpoint.getSuscriptions);
     return response.data;
   }
 );
 
-const suscriptionSlice = createSlice({
+const suscriptionsSlice = createSlice({
   name: "suscriptions",
   initialState: {
     suscriptions: [],
@@ -29,9 +29,9 @@ const suscriptionSlice = createSlice({
       })
       .addCase(getSuscriptions.rejected, (state, action) => {
         state.status = "failed";
-        state.error = null;
+        state.error = action.error.message;
       });
   },
 });
 
-export default suscriptionSlice.reducer;
+export default suscriptionsSlice.reducer;
