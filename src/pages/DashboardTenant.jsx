@@ -13,15 +13,10 @@ import ButtonSetTheme from "../components/SetTheme/ButtonSetTheme";
 import SearchTenant from "../components/DashboardTenant/SeacrhTenant";
 import ViewAdministradores from "../components/DashboardTenant/ViewAdministradores";
 import ViewCondominios from "../components/DashboardTenant/ViewCondominios";
-import ViewDepartamentos from "../components/DashboardTenant/ViewDepartamentos";
-// import ViewApartments from "../components/DashboardAdmin/ViewApartments";
-// import ViewCondominiums from "../components/DashboardAdmin/Condominiums/ViewCodominiums";
-// import AdminProfileMenu from "../components/DashboardAdmin/Admins/AdminProfileMenu";
-// import CreateCondominium from "../components/DashboardAdmin/Condominiums/CreateCondominium";
-// import DetailCondominium from "../components/DashboardAdmin/Condominiums/DetailCondominium";
+import ViewApartmentsTenant from "../components/DashboardTenant/ViewApartmentsTenant";
+import GeneralView from "../components/DashboardTenant/GeneralView";
 
 const DashboardTenant = () => {
-  //   const username = localStorage.getItem("username");
   const [activeOption, setActiveOption] = useState("Inicial");
   const handleItemClick = (item) => {
     setActiveOption(item);
@@ -31,7 +26,7 @@ const DashboardTenant = () => {
   const componentMap = {
     Inicial: () => (
       <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-        General
+        <GeneralView />
       </div>
     ),
 
@@ -43,11 +38,9 @@ const DashboardTenant = () => {
       <ViewCondominios setActiveOption={setActiveOption} />
     ),
 
-    ViewDepartamentos: () => (
-      <ViewDepartamentos handleItemClick={handleItemClick} />
+    ViewApartmentsTenant: () => (
+      <ViewApartmentsTenant setActiveOption={setActiveOption} />
     ),
-
-    // ViewApartments: () => <ViewApartments setActiveOption={setActiveOption} />,
 
     Notificaciones: () => (
       <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
@@ -136,9 +129,9 @@ const DashboardTenant = () => {
                 <Sidebar.Item
                   href="#"
                   className={
-                    activeOption === "ViewDepartamentos" ? "bg-gray-200" : ""
+                    activeOption === "ViewApartmentsTenant" ? "bg-gray-200" : ""
                   }
-                  onClick={() => handleItemClick("ViewDepartamentos")}
+                  onClick={() => handleItemClick("ViewApartmentsTenant")}
                 >
                   Departamentos
                 </Sidebar.Item>
