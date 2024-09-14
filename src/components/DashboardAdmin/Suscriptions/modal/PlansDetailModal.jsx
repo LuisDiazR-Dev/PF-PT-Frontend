@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import Plans from "../modal/plans"; // Asegúrate de que la ruta sea correcta
+import Plans from "../modal/plans";
 
 const PlanDetailsModal = ({ isOpen, onClose, plan }) => {
   const { name, plan_price } = useSelector(
