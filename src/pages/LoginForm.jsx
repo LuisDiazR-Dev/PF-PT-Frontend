@@ -139,6 +139,11 @@ const LoginForm = () => {
             >
               Iniciar Sesión
             </button>
+            <button class="w-full mt-4 p-2 bg-blue-500 text-white rounded-md bg-red-500 hover:bg-red-600">
+              <a href="http://localhost:3001/api/auth/google">
+                iniciar sesion con Google
+              </a>
+            </button>
           </form>
         </>
       )}
