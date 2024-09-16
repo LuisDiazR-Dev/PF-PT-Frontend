@@ -53,7 +53,7 @@ const Footerx = () => {
         <div className="w-full bg-gray-700 px-4 py-6 sm:flex sm:items-center sm:justify-between">
           <Footer.Copyright
             href="#"
-            by="Hecho con Amor por Grupo 2 Full Stack em Henry."
+            by="Hecho con Amor por Grupo 2 Full Stack en Henry."
             year={2022}
           />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
