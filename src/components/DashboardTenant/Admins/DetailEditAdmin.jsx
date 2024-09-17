@@ -27,6 +27,14 @@ const DetailAdmin = ({ admin, setActiveOption }) => {
     }
   };
 
+  const handleClose = () => {
+    dispatch(activateAdmin(admin.id)).then(() => {
+      dispatch(fetchAdmins());
+      setActiveOption("ViewAdministradores");
+      navigate("/tenant");
+    });
+  };
+
   return (
     <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md max-w-md mx-auto">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
@@ -76,6 +84,12 @@ const DetailAdmin = ({ admin, setActiveOption }) => {
           className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-300 ease-in-out"
         >
           Eliminar Administrador
+        </button>
+        <button
+          onClick={handleClose}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-red-700 transition duration-300 ease-in-out"
+        >
+          Cancelar
         </button>
       </div>
     </div>
