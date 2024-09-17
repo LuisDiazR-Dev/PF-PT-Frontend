@@ -1,8 +1,8 @@
 // ! Local
-// const endpointURL = "http://localhost:3001";
+const endpointURL = "http://localhost:3001";
 
 // ! Deploy
-const endpointURL = 'https://pf-pt-backend-production.up.railway.app'
+// const endpointURL = 'https://pf-pt-backend-production.up.railway.app'
 
 const endpoint = Object.freeze({
   registerLogin: `${endpointURL}/api/auth/login`,
