@@ -2,7 +2,7 @@
 const endpointURL = "http://localhost:3001";
 
 // ! Deploy
-// const endpointURL = 'http://localhost:3001'
+// const endpointURL = 'https://pf-pt-backend-production.up.railway.app'
 
 const endpoint = Object.freeze({
   registerLogin: `${endpointURL}/api/auth/login`,
@@ -13,6 +13,10 @@ const endpoint = Object.freeze({
   createApartment: `${endpointURL}/api/apartments`,
   updateApartment: (id) => `${endpointURL}/api/apartments/${id}`,
   deleteApartment: (id) => `${endpointURL}/api/apartments/${id}`,
+
+  condominiumsGet: `${endpointURL}/api/condominiums`,
+  condominiumsPost: `${endpointURL}/api/condominiums`,
+
 });
 
 export default endpoint;
