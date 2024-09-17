@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import endpoint from '../../../_utils/SwitchEndpoints-local-deploy'
 
 export const createCondominium = createAsyncThunk(
 	'condominiums/createCondominium',
@@ -11,7 +12,7 @@ export const createCondominium = createAsyncThunk(
 		}
 
 		const response = await axios.post(
-			'http://localhost:3001/api/condominiums',
+			endpoint.condominiumsPost,
 			dataWithAdminId
 		)
 
