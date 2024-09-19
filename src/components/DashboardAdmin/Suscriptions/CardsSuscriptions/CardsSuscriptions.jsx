@@ -14,7 +14,7 @@ const CardsSuscriptions = () => {
     if (suscriptions.length < 1) {
       dispatch(getSuscriptions());
     }
-  }, [suscriptions, dispatch]);
+  }, [dispatch]);
 
   const handleCardClick = (suscriptions) => {
     const planDetails = Plans.find((plan) => plan.name === suscriptions.name);

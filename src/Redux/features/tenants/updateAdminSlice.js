@@ -1,10 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+import endpoint from "../../../_utils/SwitchEndpoints-local-deploy";
+
 export const activateAdmin = createAsyncThunk(
   "admins/activateAdmin",
   async (id) => {
-    const response = await axios.put(`http://localhost:3001/api/admin/${id}`, {
+    const response = await axios
+    // .put(`http://localhost:3001/api/admin/${id}`, {
+    .put(endpoint.AdminPut(id), {
       isActive: true,
     });
     return response.data;

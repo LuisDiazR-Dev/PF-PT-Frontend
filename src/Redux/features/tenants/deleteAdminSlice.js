@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import endpoint from "../../../_utils/SwitchEndpoints-local-deploy";
 
 // Thunk para manejar la eliminación lógica
 export const deleteAdmin = createAsyncThunk(
   "admin/deleteAdmin",
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:3001/api/admin/${id}`);
+      await axios
+      // .delete(`http://localhost:3001/api/admin/${id}`);
+      .delete(endpoint.AdminDelete(id));
       return id; // Retorna el id para actualizar el estado
     } catch (error) {
       return rejectWithValue(error.response.data);

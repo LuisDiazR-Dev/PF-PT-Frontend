@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginAdmin } from "../Redux/features/register/loginAdminSlice";
+import endpoint from "../_utils/SwitchEndpoints-local-deploy";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -140,10 +141,8 @@ const LoginForm = () => {
               Iniciar Sesión
             </button>
           </form>
-          <button className="w-full mt-4 p-2  text-white rounded-md bg-red-500 hover:bg-red-600">
-            <a href="http://localhost:3001/api/auth/google">
-              iniciar sesión con Google
-            </a>
+          <button className="w-full mt-4 p-2 text-white rounded-md bg-red-600 hover:bg-red-700">
+            <a href={endpoint.GoogleLogin}>iniciar sesión con Google</a>
           </button>
         </>
       )}
