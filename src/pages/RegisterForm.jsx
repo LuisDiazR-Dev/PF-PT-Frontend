@@ -125,6 +125,11 @@ const RegisterForm = () => {
           Registrarse
         </button>
       </form>
+      <button className="w-full mt-4 p-2  text-white rounded-md bg-red-500 hover:bg-red-600">
+        <a href="http://localhost:3001/api/auth/google">
+          iniciar sesión con Google
+        </a>
+      </button>
     </div>
   );
 };
