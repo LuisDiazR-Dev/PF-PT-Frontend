@@ -5,14 +5,25 @@ import { fetchApartments } from "../../Redux/features/getApartments/apartmentsSl
 
 const ViewApartmentsTenant = ({ setActiveOption }) => {
   const dispatch = useDispatch();
+  const selectedCondoId = useSelector(
+    (state) => state.setCondoToAdmin.selectedCondoId
+  );
+  const condominiums = useSelector((state) => state.condominiums.condominiums);
   const { apartments, status, error } = useSelector(
     (state) => state.apartments
   );
-  const condominiums = useSelector((state) => state.condominiums.condominiums);
 
+  const [filter, setFilter] = useState("");
   const [localApartments, setLocalApartments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const apartmentsPerPage = 10; // Mostramos 10 apartamentos por página
+  const apartmentsPerPage = 10;
+
+  const selectedCondo = condominiums.find(
+    (condo) => condo.id === selectedCondoId
+  );
+  const condoName = selectedCondo
+    ? selectedCondo.condominium_name
+    : "Condominio no encontrado";
 
   useEffect(() => {
     dispatch(fetchApartments());
@@ -20,8 +31,31 @@ const ViewApartmentsTenant = ({ setActiveOption }) => {
   }, [dispatch, setActiveOption]);
 
   useEffect(() => {
-    setLocalApartments(apartments.filter((apt) => apt.isActive));
+    setLocalApartments(apartments);
   }, [apartments]);
+
+  const filteredApartments = localApartments
+    .filter(
+      (apartment) => Number(apartment.CondominiumId) === Number(selectedCondoId)
+    )
+    .filter((apartment) =>
+      apartment.CondoName.toLowerCase().includes(filter.toLowerCase())
+    )
+
+    .filter((apartment) =>
+      apartment.numberApartment.toLowerCase().includes(filter.toLowerCase())
+    )
+    .filter((apartment) => apartment.size.includes(filter))
+
+    .filter((apartment) => apartment.state.includes(filter.toLowerCase()));
+
+  if (status === "loading") {
+    return <p>Cargando apartamentos...</p>;
+  }
+
+  if (status === "failed") {
+    return <p>Error al cargar apartamentos: {error}</p>;
+  }
 
   // Paginación: Calculamos los índices para la página actual
   const indexOfLastApartment = currentPage * apartmentsPerPage;
@@ -46,6 +80,39 @@ const ViewApartmentsTenant = ({ setActiveOption }) => {
     <section className="p-2 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
       <h2 className="text-lg font-bold mb-4">Apartamentos Activos</h2>
 
+      <input
+        type="text"
+        placeholder="Buscar Condominio"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        className="mb-4 p-2 border border-gray-300 rounded"
+      />
+      <input
+        type="text"
+        placeholder="Buscar por número de puerta A-101"
+        // value={filter}
+        // onChange={(e) => setFilter(e.target.value)}
+        className="mb-4 p-2 border border-gray-300 rounded"
+      />
+      <input
+        type="text"
+        placeholder="Tamaño del departamento (m2)"
+        // value={filter}
+        // onChange={(e) => setFilter(e.target.value)}
+        className="mb-4 p-2 border border-gray-300 rounded"
+      />
+      <input
+        type="text"
+        placeholder="Disponibilidad"
+        // value={filter}
+        // onChange={(e) => setFilter(e.target.value)}
+        className="mb-4 p-2 border border-gray-300 rounded"
+      />
+
+      <h2 className="text-lg font-bold mb-4">
+        Apartamentos del Condominio {condoName}
+      </h2>
+
       {currentApartments.length === 0 ? (
         <p>No hay apartamentos activos disponibles.</p>
       ) : (
@@ -69,6 +136,31 @@ const ViewApartmentsTenant = ({ setActiveOption }) => {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {currentApartments.map((apartment) => {
+                const condo = condominiums.find(
+                  (condo) => condo.id === apartment.CondominiumId
+                );
+                const condoName = condo
+                  ? condo.condominium_name
+                  : "No encontrado";
+
+                return (
+                  <tr key={apartment.id}>
+                    <td className="px-6 py-4 whitespace-nowrap">{condoName}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {apartment.numberApartment}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {apartment.size} m²
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {apartment.status}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredApartments.map((apartment) => {
                 const condo = condominiums.find(
                   (condo) => condo.id === apartment.CondominiumId
                 );
