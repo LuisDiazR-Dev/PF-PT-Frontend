@@ -14,9 +14,9 @@ export const AdminCard = ({
 }) => {
   const dispatch = useDispatch();
 
-  if (!isActive) {
-    return null;
-  }
+  // if (!isActive) {
+  //   return null;
+  // }
 
   const handleClick = () => {
     dispatch(getAdminById(id));
@@ -24,7 +24,9 @@ export const AdminCard = ({
   return (
     <div
       onClick={handleClick}
-      className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      className={`max-w-sm bg-white border border-gray-200 rounded-lg shadow ${
+        !isActive ? "opacity-50" : ""
+      } dark:bg-gray-800 dark:border-gray-700`}
     >
       {imageUrl && (
         <img
