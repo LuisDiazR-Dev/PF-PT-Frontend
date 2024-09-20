@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCondominium } from "../../../Redux/features/getCondominium/updateCondominiumSlice";
 import { deactivateCondominium } from "../../../Redux/features/getCondominium/deleteCondoSlice";
 
-const DetailCondominium = () => {
+const DetailCondominium = ({ setActiveOption }) => {
   const dispatch = useDispatch();
   const {
     condominium,
@@ -57,6 +57,7 @@ const DetailCondominium = () => {
           updateCondominium({ id, updatedData: { ...formData, AdminId } })
         ).unwrap();
         setIsEditing(false);
+        setActiveOption("ViewCondominiums");
       } catch (error) {
         console.error("Error en la actualización del condominio:", error);
       }
@@ -171,7 +172,7 @@ const DetailCondominium = () => {
                 className="mt-1 p-2 border border-gray-400 rounded-md w-full"
               />
             </label>
-            <label className="block">
+            {/* <label className="block">
               Logo del Condominio
               <input
                 type="text"
@@ -190,7 +191,7 @@ const DetailCondominium = () => {
                 onChange={handleInputChange}
                 className="mt-1 p-2 border border-gray-400 rounded-md w-full"
               />
-            </label>
+            </label> */}
             <label className="block">
               Número de Apartamentos
               <input
