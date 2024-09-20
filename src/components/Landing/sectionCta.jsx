@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DetailPlansPanel from "../DashboardAdmin/Suscriptions/DetailPlansPanel";
 
 const SectionCta = () => {
   const [isPanelOpen, setPanelOpen] = useState(false);
+  const [rute, setRute] = useState("/login");
+
+  // Verificar si el usuario está logueado al cargar el componente
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("loggedIn") === "true"; // Verifica si el usuario está logueado
+    if (loggedIn) {
+      setRute("/dashboard-admin"); // Cambia la ruta a /dashboard-admin si está logueado
+    } else {
+      setRute("/login"); // De lo contrario, establece la ruta a /login
+    }
+  }, []);
 
   const handleOpenPanel = () => {
     setPanelOpen(true);
@@ -29,7 +40,7 @@ const SectionCta = () => {
           </p>
           <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
             <Link
-              to="/login"
+              to={rute}
               className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 "
             >
               Empiezas a Administrar

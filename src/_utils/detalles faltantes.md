@@ -1,8 +1,9 @@
-Ordenamiento de apartamentos*
-quitar campos del formulario de editar logo e imagen.*
-permanencia de condominio seleccionado.*
-limpiar el local store para salir*
-permanencia de login si se va a landing*
+# Por Hacer
+
+## Lista
+
+Ordenamiento de apartamentos
+permanencia de condominio seleccionado.
 cambiar el componente de UserMenu*
 añadir algún tipo de comportamiento cuando se desactive un condominio -> hacerlo con un modal, anda de alert, se ve feo jaja
 
@@ -15,3 +16,10 @@ arreglar el usuario tenat y bloquear ruta y el dashboard normal si no esta log
 crear subcipciones para mostrar en el landing
 
 mejorar la vista de los review
+
+## Hechos
+
+quitar campos del formulario de editar logo e imagen
+limpiar el local store para salir
+permanencia de login si se va a landing
+Ocultar barra de búsqueda que no se esta usando

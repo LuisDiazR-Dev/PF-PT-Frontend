@@ -8,6 +8,8 @@ import {
   HiTable,
 } from "react-icons/hi";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import LogoNavbar from "../components/Navbar/LogoNavbar";
 import ButtonSetTheme from "../components/SetTheme/ButtonSetTheme";
@@ -20,12 +22,20 @@ import DetailCondominium from "../components/DashboardAdmin/Condominiums/DetailC
 
 import ViewApartments from "../components/DashboardAdmin/Apartments/ViewApartments";
 import CreateApartments from "../components/DashboardAdmin/Apartments/CreateApartments";
+import { logOut } from "../Redux/features/register/loginAdminSlice";
 
 const DashboardAdmin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const username = localStorage.getItem("username");
   const [activeOption, setActiveOption] = useState("Inicial");
   const handleItemClick = (item) => {
     setActiveOption(item);
+  };
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    navigate("/");
   };
 
   const componentMap = {
@@ -72,6 +82,8 @@ const DashboardAdmin = () => {
     "CreateCondominium",
     "DetailCondominium",
     "CreateApartments",
+    "ViewCondominiums",
+    "ViewApartments",
   ];
 
   return (
@@ -190,7 +202,11 @@ const DashboardAdmin = () => {
               >
                 Hazte Pro
               </Sidebar.Item>
-              <Sidebar.Item href="/" icon={HiArrowSmLeft}>
+              <Sidebar.Item
+                href="#"
+                onClick={handleLogout}
+                icon={HiArrowSmLeft}
+              >
                 Salir
               </Sidebar.Item>
             </Sidebar.ItemGroup>

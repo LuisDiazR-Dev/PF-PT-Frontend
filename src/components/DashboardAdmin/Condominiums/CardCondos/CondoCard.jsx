@@ -20,7 +20,7 @@ const CondoCard = ({
   const { selectedCondoId, isSelected } = useSelector(
     (state) => state.setCondoToAdmin
   );
-  console.log(selectedCondoId, isSelected);
+  console.log(selectedCondoId, isSelected, "esoty aca");
 
   const isActive = selectedCondoId === id && isSelected;
 
