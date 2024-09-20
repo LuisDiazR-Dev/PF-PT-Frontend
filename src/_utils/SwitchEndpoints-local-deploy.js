@@ -26,7 +26,7 @@ const endpoint = Object.freeze({
   AdminDelete:  (id) => `${endpointURL}/api/admin/${id}`,
   AdminPut:  (id) => `${endpointURL}/api/admin/${id}`,
 
-  GoogleLogin: `${endpointURL}/api/auth/google`,
+  GoogleLogin: `${endpointURL}/api/auth/google/callback`,
   
 });
 
