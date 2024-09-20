@@ -23,3 +23,4 @@ quitar campos del formulario de editar logo e imagen
 limpiar el local store para salir
 permanencia de login si se va a landing
 Ocultar barra de búsqueda que no se esta usando
+se mantubo el menuUser si esta logueado y sale al landing pudiendo volver a entrar sin tener que loguear denuevo
