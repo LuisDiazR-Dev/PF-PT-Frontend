@@ -34,14 +34,16 @@ const loginAdminSlice = createSlice({
     logOut: (state) => {
       state.loggedIn = false;
       state.admin = null;
-      localStorage.removeItem("loggedIn"); // Remover de localStorage al hacer logout
-      localStorage.removeItem("username");
-      localStorage.removeItem("email");
-      localStorage.removeItem("imageUrl");
-      localStorage.removeItem("isActive");
-      localStorage.removeItem("SuscriptionId");
-      localStorage.removeItem("token");
-      localStorage.removeItem("id");
+      // localStorage.removeItem("loggedIn"); // Remover de localStorage al hacer logout
+      // localStorage.removeItem("username");
+      // localStorage.removeItem("email");
+      // localStorage.removeItem("imageUrl");
+      // localStorage.removeItem("isActive");
+      // localStorage.removeItem("SuscriptionId");
+      // localStorage.removeItem("token");
+      // localStorage.removeItem("id");
+      // localStorage.removeItem("setCondoToAdmin");
+      localStorage.clear()
     },
   },
   extraReducers: (builder) => {
