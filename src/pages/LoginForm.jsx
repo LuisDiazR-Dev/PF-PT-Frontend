@@ -50,10 +50,10 @@ const LoginForm = () => {
         localStorage.setItem("token", response.token || "");
 
         navigate(
-          formData.email === "masteradmin@radmin.com" &&
-            formData.password === "rAdmin123"
+          formData.email.split("@")[1] === "radmin.com"
             ? "/tenant"
-            : "/dashboard-admin"
+            : "/dashboard-admin",
+          console.log(formData.email, "email")
         );
       } else {
         console.error("Respuesta inesperada:", response);
