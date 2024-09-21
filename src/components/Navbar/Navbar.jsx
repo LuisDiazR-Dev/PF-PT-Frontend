@@ -29,11 +29,11 @@ const NavBar = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="#" active>
+        {/* <Navbar.Link href="#" active>
           Testimonios
         </Navbar.Link>
         <Navbar.Link href="#">Precios</Navbar.Link>
-        <Navbar.Link href="#">Contacto</Navbar.Link>
+        <Navbar.Link href="#">Contacto</Navbar.Link> */}
         <ButtonSetTheme />
       </Navbar.Collapse>
     </Navbar>
