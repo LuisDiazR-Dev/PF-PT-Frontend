@@ -7,6 +7,8 @@ import {
   HiShoppingBag,
 } from "react-icons/hi";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import LogoNavbar from "../components/Navbar/LogoNavbar";
 import ButtonSetTheme from "../components/SetTheme/ButtonSetTheme";
@@ -15,8 +17,11 @@ import ViewAdministradores from "../components/DashboardTenant/ViewAdministrador
 import ViewCondominios from "../components/DashboardTenant/ViewCondominios";
 import ViewApartmentsTenant from "../components/DashboardTenant/ViewApartmentsTenant";
 import GeneralView from "../components/DashboardTenant/GeneralView";
+import { logOut } from "../Redux/features/register/loginAdminSlice";
 
 const DashboardTenant = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [activeOption, setActiveOption] = useState("Inicial");
   const handleItemClick = (item) => {
     setActiveOption(item);
@@ -53,6 +58,11 @@ const DashboardTenant = () => {
         Estadísticas - Próximamente
       </div>
     ),
+  };
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    navigate("/");
   };
 
   const ActiveComponent = componentMap[activeOption];
@@ -147,7 +157,11 @@ const DashboardTenant = () => {
             </Sidebar.ItemGroup>
 
             <Sidebar.ItemGroup>
-              <Sidebar.Item href="/" icon={HiArrowSmLeft}>
+              <Sidebar.Item
+                href="#"
+                onClick={handleLogout}
+                icon={HiArrowSmLeft}
+              >
                 Salir
               </Sidebar.Item>
             </Sidebar.ItemGroup>
