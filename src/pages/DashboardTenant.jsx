@@ -136,7 +136,7 @@ const DashboardTenant = () => {
                 >
                   Condominios
                 </Sidebar.Item>
-                <Sidebar.Item
+                {/* <Sidebar.Item
                   href="#"
                   className={
                     activeOption === "ViewApartmentsTenant" ? "bg-gray-200" : ""
@@ -144,7 +144,7 @@ const DashboardTenant = () => {
                   onClick={() => handleItemClick("ViewApartmentsTenant")}
                 >
                   Departamentos
-                </Sidebar.Item>
+                </Sidebar.Item> */}
               </Sidebar.Collapse>
 
               <Sidebar.Item href="#" icon={HiInbox} label="3">
